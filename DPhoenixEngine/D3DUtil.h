@@ -6,7 +6,7 @@
 #include <crtdbg.h>					//this can help detect memory leaks
 #endif
 
-#include <d3d11_1.h>
+
 #include <cwchar>						//helper for 'wide' character sets
 #include <d3d11.h>						//main Direct3D 11 header
 #include <d3dx11.h>						//DX11 extras header
