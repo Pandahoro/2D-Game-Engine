@@ -1,6 +1,6 @@
 #include "D3DUtil.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	XboxPad::XboxPad(int playerNumber)
 	{

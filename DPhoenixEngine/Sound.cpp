@@ -1,6 +1,6 @@
 #include "D3DUtil.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	//map existing sound son the layer
 	std::map< WaveSoundRead*, int > Sound::mWaveMap;
@@ -96,7 +96,7 @@ namespace DPhoenix
 		LPDIRECTSOUNDBUFFER pTempBuffer = 0;
 
 		//Create the sound buffer
-		hr = DPhoenix::SoundPtr()->GetDSound()->CreateSoundBuffer(&dsbd, &pTempBuffer, NULL);
+		hr = PandaEngine::SoundPtr()->GetDSound()->CreateSoundBuffer(&dsbd, &pTempBuffer, NULL);
 		if (FAILED(hr))
 		{
 			debug << "CreateSoundBuffer failed \n";

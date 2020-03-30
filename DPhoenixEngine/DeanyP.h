@@ -2,7 +2,7 @@
 
 #include "Moving2DObject.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	enum DeanyPInputs
 	{
@@ -105,7 +105,7 @@ namespace DPhoenix
 		~DeanyP() { };
 
 		//update character logic
-		void CharacterUpdate(float deltaTime, DPhoenix::Map* map);
+		void CharacterUpdate(float deltaTime, PandaEngine::Map* map);
 
 		//key handling
 		bool Released(DeanyPInputs key);

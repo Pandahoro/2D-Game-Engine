@@ -1,7 +1,7 @@
 #pragma once
 #include "D3DUtil.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 
 	//Simple texture manager to avoid loading duplicate textures from file.  That can

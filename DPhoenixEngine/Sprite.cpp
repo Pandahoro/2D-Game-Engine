@@ -1,6 +1,6 @@
 #include "D3DUtil.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	//constructor - initialise vars - render type
 	Sprite::Sprite()

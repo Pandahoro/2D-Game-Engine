@@ -4,7 +4,7 @@
 //for stream output to go
 std::ofstream out("output.txt");
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	//constructor
 	LogFile::LogFile() {}

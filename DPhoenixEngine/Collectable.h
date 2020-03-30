@@ -2,7 +2,7 @@
 #include "D3DUtil.h"
 #include "AABB2D.h" //for AABB Struct
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	enum CollectableTypes
 	{

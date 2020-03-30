@@ -1,6 +1,6 @@
 #include "D3DUtil.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	//Event constructor - resets id
 	IEvent::IEvent()

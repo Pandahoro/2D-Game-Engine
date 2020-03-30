@@ -18,7 +18,7 @@ enum GameStates
 };
 
 //initial class definition inheriting fron Engine
-class EnemiesDemo : public DPhoenix::Engine
+class EnemiesDemo : public PandaEngine::Engine
 {
 private:
 	//depth stencil (to handle multiple overlayed sprites)
@@ -28,13 +28,13 @@ private:
 	D3D11_DEPTH_STENCIL_DESC mDepthDisabledStencilDesc;
 
 	//texture manager
-	DPhoenix::TextureMgr mTexMgr;
+	PandaEngine::TextureMgr mTexMgr;
 
 	//audio manager
-	DPhoenix::AudioMgr mAudioMgr;
+	PandaEngine::AudioMgr mAudioMgr;
 
 	//font pointer - debug text
-	DPhoenix::Font* mDebugFont;
+	PandaEngine::Font* mDebugFont;
 
 	//screen scale (for window stretching)
 	XMFLOAT2 mScreenScale;
@@ -43,43 +43,43 @@ private:
 
 	GameStates mGameState;
 
-	DPhoenix::Sprite* mBGSprite;
-	DPhoenix::DeanyP* mDeanyP;
-	DPhoenix::Sprite* mTitleSprite;
+	PandaEngine::Sprite* mBGSprite;
+	PandaEngine::DeanyP* mDeanyP;
+	PandaEngine::Sprite* mTitleSprite;
 
 	bool mStartPressedFlag;
 	bool mStartWasPressedFlag;
 
-	DPhoenix::Map* mMap;
-	DPhoenix::Camera2D* mCamera;
+	PandaEngine::Map* mMap;
+	PandaEngine::Camera2D* mCamera;
 
-	std::vector<DPhoenix::Fire*> mPlayerFireballs;
-	std::vector<DPhoenix::Collectable*> mCollectablesVec;
+	std::vector<PandaEngine::Fire*> mPlayerFireballs;
+	std::vector<PandaEngine::Collectable*> mCollectablesVec;
 
 	//vectors for enemies
-	std::vector<DPhoenix::Fire*> mEnemyFireballs;
-	std::vector<DPhoenix::Enemy*> mEnemiesVec;
+	std::vector<PandaEngine::Fire*> mEnemyFireballs;
+	std::vector<PandaEngine::Enemy*> mEnemiesVec;
 	std::vector<std::vector<XMFLOAT2*>> mEnemySpawnVec;
-	std::vector<DPhoenix::Angel*> mAngelsVec;
+	std::vector<PandaEngine::Angel*> mAngelsVec;
 	//values for enemies killed / total
 	int mAngelsCollected;
 	int mAngelsTotal;
 
 	//sprites for win / lose states
-	DPhoenix::Sprite* mWinSprite;
-	DPhoenix::Sprite* mGameOverSprite;
+	PandaEngine::Sprite* mWinSprite;
+	PandaEngine::Sprite* mGameOverSprite;
 
 #pragma endregion GameMembers
 
 #pragma region HUDMembers
 
 
-	DPhoenix::Sprite* mHUDKnowlegdeLabel;	//knowledge animation
-	DPhoenix::Sprite* mHUDBackCog;			//cog - max knowledge
-	DPhoenix::Sprite* mHUDFrontCog;			//cog - current knowlegde
-	DPhoenix::Sprite* mHUDHeart;			//heart animation
-	DPhoenix::Sprite* mDeanyHealthBG;		//health bar background (max health)
-	DPhoenix::Sprite* mDeanyHealth;			//health bar (current health)
+	PandaEngine::Sprite* mHUDKnowlegdeLabel;	//knowledge animation
+	PandaEngine::Sprite* mHUDBackCog;			//cog - max knowledge
+	PandaEngine::Sprite* mHUDFrontCog;			//cog - current knowlegde
+	PandaEngine::Sprite* mHUDHeart;			//heart animation
+	PandaEngine::Sprite* mDeanyHealthBG;		//health bar background (max health)
+	PandaEngine::Sprite* mDeanyHealth;			//health bar (current health)
 
 	XMFLOAT4 mHUDHeartAltColor;				//alt colour for heart
 	float mHUDHeartLerpValue;				//lerp value for alt color
@@ -103,13 +103,13 @@ public:
 	void BuildGeometryBuffers();
 
 	//new method / implements event handling
-	void EnemiesDemo::HandleEvents(DPhoenix::IEvent* e);
+	void EnemiesDemo::HandleEvents(PandaEngine::IEvent* e);
 
 	//new method / initialises sounds to be used in the app
 	void InitAudio();
 
 	//new method / specifically handles individual sprite rendering
-	void RenderSprite(DPhoenix::Sprite* sprite,
+	void RenderSprite(PandaEngine::Sprite* sprite,
 		ID3DX11EffectTechnique* tech, bool isHUD = false);
 
 	//methods for game
@@ -146,8 +146,8 @@ EnemiesDemo::EnemiesDemo(HINSTANCE hInstance)
 //destructor (release any memory as necessary)
 EnemiesDemo::~EnemiesDemo()
 {
-	DPhoenix::Effects::DestroyAll();
-	DPhoenix::InputLayouts::DestroyAll();
+	PandaEngine::Effects::DestroyAll();
+	PandaEngine::InputLayouts::DestroyAll();
 }
 
 //any additional initialisation (we generally initiaise game assets here)
@@ -160,11 +160,11 @@ bool EnemiesDemo::Init(bool fullScreen)
 	mTexMgr.Init(md3dDevice);
 
 	// Must init Effects first since InputLayouts depend on shader signatures.
-	DPhoenix::Effects::InitAll(md3dDevice);
-	DPhoenix::InputLayouts::InitAll(md3dDevice);
+	PandaEngine::Effects::InitAll(md3dDevice);
+	PandaEngine::InputLayouts::InitAll(md3dDevice);
 
 	//must init soundlayer to then buffer audio
-	DPhoenix::SoundLayer::Create(mhMainWnd);
+	PandaEngine::SoundLayer::Create(mhMainWnd);
 	InitAudio();
 
 	//build render / blend modes etc.
@@ -172,18 +172,18 @@ bool EnemiesDemo::Init(bool fullScreen)
 
 	//debug font
 	//(Arial size 20 sending window, initial brush, writefactory)
-	mDebugFont = new DPhoenix::Font(mhMainWnd, mBlackBrush,
+	mDebugFont = new PandaEngine::Font(mhMainWnd, mBlackBrush,
 		mDWriteFactory, "Arial", 20.0f);
 
 #pragma region GameAssetsInit
 
 	//map (the 2, 1 refers to 2 panels wide, 1 panel high)
-	mMap = new DPhoenix::Map("Data\\Levels\\TestLevel.csv", &mTexMgr, md3dDevice,
+	mMap = new PandaEngine::Map("Data\\Levels\\TestLevel.csv", &mTexMgr, md3dDevice,
 		mCollectablesVec, mEnemySpawnVec,
 		48, 30, 2, 1);
 
 	//player
-	mDeanyP = new DPhoenix::DeanyP(&mTexMgr, md3dDevice, &mAudioMgr);
+	mDeanyP = new PandaEngine::DeanyP(&mTexMgr, md3dDevice, &mAudioMgr);
 	//set the player spawn point
 	mDeanyP->mPosition = mMap->mPlayerSpawnPoint;
 
@@ -192,25 +192,25 @@ bool EnemiesDemo::Init(bool fullScreen)
 	for (int i = 0; i < mEnemySpawnVec.size(); i++)
 	{
 		//cast to enemy types and check
-		switch ((DPhoenix::EnemyTypesForMap)i)
+		switch ((PandaEngine::EnemyTypesForMap)i)
 		{
 			//if chemplane type, loop through the containined vector to spawn
-		case DPhoenix::ENEMYMAP_CHEMPLANE:
+		case PandaEngine::ENEMYMAP_CHEMPLANE:
 			for (int j = 0; j < mEnemySpawnVec[i].size(); j++)
 			{
 				//construct new ChemPlane enemy with spaen point, device pointers
 				//and add to enemies vector to manage updates / rendering
-				mEnemiesVec.push_back(new DPhoenix::ChemPlane(&mTexMgr, md3dDevice, 
+				mEnemiesVec.push_back(new PandaEngine::ChemPlane(&mTexMgr, md3dDevice, 
 					*mEnemySpawnVec[i][j], &mAudioMgr));
 			}
 
 			break;
-		case DPhoenix::ENEMYMAP_ANTIVAX:
+		case PandaEngine::ENEMYMAP_ANTIVAX:
 			for (int j = 0; j < mEnemySpawnVec[i].size(); j++)
 			{
 				//construct new ChemPlane enemy with spaen point, device pointers
 				//and add to enemies vector to manage updates / rendering
-				mEnemiesVec.push_back(new DPhoenix::AntiVax(&mTexMgr, md3dDevice,
+				mEnemiesVec.push_back(new PandaEngine::AntiVax(&mTexMgr, md3dDevice,
 					*mEnemySpawnVec[i][j], &mAudioMgr));
 			}
 
@@ -221,7 +221,7 @@ bool EnemiesDemo::Init(bool fullScreen)
 	mAngelsCollected = 0;
 	mAngelsTotal = mEnemiesVec.size();
 
-	mTitleSprite = new DPhoenix::Sprite();
+	mTitleSprite = new PandaEngine::Sprite();
 	mTitleSprite->Load("Textures\\ObjectAssets\\TitleScreen.png", &mTexMgr,
 		1440.0f, 900.0f, md3dDevice);
 	mTitleSprite->SetCurrentFrame(0);	mTitleSprite->mAnimationColumns = 1;
@@ -229,7 +229,7 @@ bool EnemiesDemo::Init(bool fullScreen)
 	mTitleSprite->SetScale(1.0f);	mTitleSprite->mFlipValue = 1.0f;
 
 	//camera
-	mCamera = new DPhoenix::Camera2D();
+	mCamera = new PandaEngine::Camera2D();
 	mCamera->mPosition.x = 0.0f;  mCamera->mPosition.y = 0.0f;
 	mCamera->mSpeed.x = 0.0f;  mCamera->mSpeed.y = 0.0f;
 	//used to simplify bounding calculations
@@ -247,13 +247,13 @@ bool EnemiesDemo::Init(bool fullScreen)
 	InitBackground();
 
 	//win / level complete sprite
-	mWinSprite = new DPhoenix::Sprite();
+	mWinSprite = new PandaEngine::Sprite();
 	mWinSprite->Load("Textures\\LevelAssets\\ResultsBanner.png", &mTexMgr, 900.0f, 400.0f, md3dDevice);
 	mWinSprite->SetCurrentFrame(0);	mWinSprite->mAnimationColumns = 1;
 	mWinSprite->mAnimationDirection = 0;	mWinSprite->SetAnimationRange(0, 0);
 	mWinSprite->SetScale(1.0f);	mWinSprite->mFlipValue = 1.0f;
 	//game over sprite
-	mGameOverSprite = new DPhoenix::Sprite();
+	mGameOverSprite = new PandaEngine::Sprite();
 	mGameOverSprite->Load("Textures\\ObjectAssets\\GameOverBanner.png", &mTexMgr, 500.0f, 200.0f, md3dDevice);
 	mGameOverSprite->SetCurrentFrame(0);	mGameOverSprite->mAnimationColumns = 1;
 	mGameOverSprite->mAnimationDirection = 0;	mGameOverSprite->SetAnimationRange(0, 0);
@@ -269,23 +269,23 @@ bool EnemiesDemo::Init(bool fullScreen)
 #pragma region HUDInit
 
 	//HUD ------------------------------------------------------------------------
-	mHUDKnowlegdeLabel = new DPhoenix::Sprite();
+	mHUDKnowlegdeLabel = new PandaEngine::Sprite();
 	mHUDKnowlegdeLabel->Load("Textures\\ObjectAssets\\KnowledgeLabel.png", &mTexMgr, 175.0f, 30.0f, md3dDevice);
 	mHUDKnowlegdeLabel->SetCurrentFrame(0);	mHUDKnowlegdeLabel->mAnimationColumns = 12;
 	mHUDKnowlegdeLabel->mAnimationDirection = 6;	mHUDKnowlegdeLabel->SetAnimationRange(0, 11);
 	mHUDKnowlegdeLabel->SetScale(1.0f);	mHUDKnowlegdeLabel->mFlipValue = 1.0f;
 
-	mHUDBackCog = new DPhoenix::Sprite();
+	mHUDBackCog = new PandaEngine::Sprite();
 	mHUDBackCog->Load("Textures\\ObjectAssets\\BackCog.png", &mTexMgr, 50.0f, 50.0f, md3dDevice);
 
-	mHUDFrontCog = new DPhoenix::Sprite();
+	mHUDFrontCog = new PandaEngine::Sprite();
 	mHUDFrontCog->Load("Textures\\ObjectAssets\\FrontCog.png", &mTexMgr, 50.0f, 50.0f, md3dDevice);
 	//red is alt color value
 	mHUDFrontCog->mAltColorValue = XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
 	mCogRotationValue = 0.0f;
 	mHUDFrontCogLerpValue = 0.0f;
 
-	mHUDHeart = new DPhoenix::Sprite();
+	mHUDHeart = new PandaEngine::Sprite();
 	mHUDHeart->Load("Textures\\ObjectAssets\\Heart.png", &mTexMgr, 50.0f, 50.0f, md3dDevice);
 	mHUDHeart->SetCurrentFrame(0);	mHUDHeart->mAnimationColumns = 4;
 	mHUDHeart->mAnimationDirection = 10;	mHUDHeart->SetAnimationRange(0, 3);
@@ -294,13 +294,13 @@ bool EnemiesDemo::Init(bool fullScreen)
 	mHUDHeart->mAltColorValue = XMFLOAT4(0.5f, 0.5f, 0.5f, 0.0f);
 	mHUDHeartLerpValue = 0.0f;
 
-	mDeanyHealthBG = new DPhoenix::Sprite();
+	mDeanyHealthBG = new PandaEngine::Sprite();
 	mDeanyHealthBG->Load("Textures\\ObjectAssets\\HealthBar.png", &mTexMgr, 100.0f, 10.0f, md3dDevice);
 	mDeanyHealthBG->SetCurrentFrame(0);	mDeanyHealthBG->mAnimationColumns = 1;
 	mDeanyHealthBG->mAnimationDirection = 0;	mDeanyHealthBG->SetAnimationRange(0, 0);
 	mDeanyHealthBG->SetScale(1.0f);	mDeanyHealthBG->mFlipValue = 1.0f;
 
-	mDeanyHealth = new DPhoenix::Sprite();
+	mDeanyHealth = new PandaEngine::Sprite();
 	mDeanyHealth->Load("Textures\\ObjectAssets\\HealthBarGreen.png", &mTexMgr, 100.0f, 10.0f, md3dDevice);
 	mDeanyHealth->SetCurrentFrame(0);	mDeanyHealth->mAnimationColumns = 1;
 	mDeanyHealth->mAnimationDirection = 0;	mDeanyHealth->SetAnimationRange(0, 0);
@@ -362,10 +362,10 @@ void EnemiesDemo::UpdateScene(float dt)
 		{
 			//create new fireball and push back in player fire vector
 			mPlayerFireballs.push_back
-			(new DPhoenix::Fire(&mTexMgr, md3dDevice,
+			(new PandaEngine::Fire(&mTexMgr, md3dDevice,
 				mDeanyP->mPosition,
 				mDeanyP->mFireDirections[mDeanyP->mCurrentFireDirection],
-				DPhoenix::FIRE_PLAYER,
+				PandaEngine::FIRE_PLAYER,
 				&mAudioMgr));
 			//(as well as pointers to main engine classes, we send the
 			//current position, current fire direction and fire type)
@@ -421,13 +421,13 @@ void EnemiesDemo::UpdateScene(float dt)
 				//check the collectable type
 				switch (mCollectablesVec[i]->mCollectableType)
 				{
-				case DPhoenix::COLLECTABLE_RESEARCH:
+				case PandaEngine::COLLECTABLE_RESEARCH:
 					mDeanyP->mMaxKnowledge += 10;	//update max knowledge
 													//bound at max 200
 					if (mDeanyP->mMaxKnowledge > 200) mDeanyP->mMaxKnowledge = 200;
 					//could play sound here
 					break;
-				case DPhoenix::COLLECTABLE_COFFEE:
+				case PandaEngine::COLLECTABLE_COFFEE:
 					mDeanyP->mHealth += 10;		//update health
 												//bound at max health
 					if (mDeanyP->mHealth > mDeanyP->mMaxHealth)
@@ -478,7 +478,7 @@ void EnemiesDemo::UpdateScene(float dt)
 			}
 			//if Deany P not dying and fireball collides with Deany P's hitbox
 			//and isn't 'friendly fire' then take damage and flag for removal
-			if (mDeanyP->mLifeState != DPhoenix::DP_DIE_LIFESTATE &&
+			if (mDeanyP->mLifeState != PandaEngine::DP_DIE_LIFESTATE &&
 				mDeanyP->mAABB.Overlaps(mEnemyFireballs[i]->mAABB)
 				&& !mEnemyFireballs[i]->mIsFriendlyFire)
 			{
@@ -552,7 +552,7 @@ void EnemiesDemo::UpdateScene(float dt)
 
 				//construct new fire of type set, from position, direction and device pointers
 				//add to enmey fireballs vector
-				mEnemyFireballs.push_back(new DPhoenix::Fire(&mTexMgr, md3dDevice,
+				mEnemyFireballs.push_back(new PandaEngine::Fire(&mTexMgr, md3dDevice,
 					firePosition,
 					mEnemiesVec[i]->mFireDirection,
 					mEnemiesVec[i]->mFireType, &mAudioMgr));
@@ -577,7 +577,7 @@ void EnemiesDemo::UpdateScene(float dt)
 			//'angels collected', otherwise increment iterator
 			if (mEnemiesVec[i]->mRemoveFlag)
 			{
-				mAngelsVec.push_back(new DPhoenix::Angel(&mTexMgr, md3dDevice,
+				mAngelsVec.push_back(new PandaEngine::Angel(&mTexMgr, md3dDevice,
 					mEnemiesVec[i]->mPosition, XMFLOAT2(0.0f, 1.0f)));
 				mEnemiesVec.erase(mEnemiesVec.begin() + i);
 				mAngelsCollected++;
@@ -700,7 +700,7 @@ void EnemiesDemo::UpdateScene(float dt)
 #pragma endregion HUDUpdates
 
 		//flag game over if all lives lost
-		if (mDeanyP->mLifeState == DPhoenix::DP_GAMEOVER_LIFESTATE)
+		if (mDeanyP->mLifeState == PandaEngine::DP_GAMEOVER_LIFESTATE)
 			mGameState = GAME_OVER_STATE;
 		//if all enemies defeated, set win state
 		if (mAngelsCollected == mAngelsTotal)
@@ -851,7 +851,7 @@ void EnemiesDemo::DrawScene()
 	assert(mSwapChain);
 
 	//set the effect techniques we wish to use
-	ID3DX11EffectTechnique* activeSpriteTech = DPhoenix::Effects::SpriteFX->SpriteTech;
+	ID3DX11EffectTechnique* activeSpriteTech = PandaEngine::Effects::SpriteFX->SpriteTech;
 
 	//clear the screen with the defined colour
 	float clearColor[4] = { 0.0f, 0.2f, 0.4f, 1.0f };
@@ -860,7 +860,7 @@ void EnemiesDemo::DrawScene()
 
 	//set up the vertex input layout
 	//(would need to change for different types of rendering)
-	md3dImmediateContext->IASetInputLayout(DPhoenix::InputLayouts::SpritePosTex);
+	md3dImmediateContext->IASetInputLayout(PandaEngine::InputLayouts::SpritePosTex);
 	//set primitive topology as triangle list (adjacent trinagles to render for GPU efficiency)
 	md3dImmediateContext->IASetPrimitiveTopology(
 		D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -989,47 +989,47 @@ void EnemiesDemo::DrawScene()
 
 }
 
-void EnemiesDemo::HandleEvents(DPhoenix::IEvent* e)
+void EnemiesDemo::HandleEvents(PandaEngine::IEvent* e)
 {
 	switch (e->GetID())
 	{
-	case DPhoenix::EVENT_KEYPRESS:
+	case PandaEngine::EVENT_KEYPRESS:
 	{
-		DPhoenix::KeyPressEvent* kpe = (DPhoenix::KeyPressEvent*)e;
+		PandaEngine::KeyPressEvent* kpe = (PandaEngine::KeyPressEvent*)e;
 		switch (kpe->mKeycode)
 		{
 		case DIK_D:
-			mDeanyP->mInputs[(int)DPhoenix::DP_RIGHT_INPUT] = true;
+			mDeanyP->mInputs[(int)PandaEngine::DP_RIGHT_INPUT] = true;
 			break;
 		case DIK_A:
-			mDeanyP->mInputs[(int)DPhoenix::DP_LEFT_INPUT] = true;
+			mDeanyP->mInputs[(int)PandaEngine::DP_LEFT_INPUT] = true;
 			break;
 		case DIK_W:
-			mDeanyP->mInputs[(int)DPhoenix::DP_UP_INPUT] = true;
+			mDeanyP->mInputs[(int)PandaEngine::DP_UP_INPUT] = true;
 			break;
 		case DIK_S:
-			mDeanyP->mInputs[(int)DPhoenix::DP_DOWN_INPUT] = true;
+			mDeanyP->mInputs[(int)PandaEngine::DP_DOWN_INPUT] = true;
 			break;
 		case DIK_UP:
-			mDeanyP->mInputs[(int)DPhoenix::DP_JUMP_INPUT] = true;
+			mDeanyP->mInputs[(int)PandaEngine::DP_JUMP_INPUT] = true;
 			break;
 		case DIK_DOWN:
-			mDeanyP->mInputs[(int)DPhoenix::DP_REFLECT_INPUT] = true;
+			mDeanyP->mInputs[(int)PandaEngine::DP_REFLECT_INPUT] = true;
 			break;
 		case DIK_SPACE:
-			mDeanyP->mInputs[(int)DPhoenix::DP_FIRE_INPUT] = true;
+			mDeanyP->mInputs[(int)PandaEngine::DP_FIRE_INPUT] = true;
 			break;
 		case DIK_J:
-			mCamera->mInputs[(int)DPhoenix::CAMERA2D_LEFT_INPUT] = true;
+			mCamera->mInputs[(int)PandaEngine::CAMERA2D_LEFT_INPUT] = true;
 			break;
 		case DIK_L:
-			mCamera->mInputs[(int)DPhoenix::CAMERA2D_RIGHT_INPUT] = true;
+			mCamera->mInputs[(int)PandaEngine::CAMERA2D_RIGHT_INPUT] = true;
 			break;
 		case DIK_I:
-			mCamera->mInputs[(int)DPhoenix::CAMERA2D_UP_INPUT] = true;
+			mCamera->mInputs[(int)PandaEngine::CAMERA2D_UP_INPUT] = true;
 			break;
 		case DIK_K:
-			mCamera->mInputs[(int)DPhoenix::CAMERA2D_DOWN_INPUT] = true;
+			mCamera->mInputs[(int)PandaEngine::CAMERA2D_DOWN_INPUT] = true;
 			break;
 		case DIK_RETURN:
 			mStartPressedFlag = true;
@@ -1060,36 +1060,36 @@ void EnemiesDemo::HandleEvents(DPhoenix::IEvent* e)
 		}
 	}
 	break;
-	case DPhoenix::EVENT_XBOX_INPUT:
+	case PandaEngine::EVENT_XBOX_INPUT:
 	{
-		DPhoenix::XBoxEvent* xbe = (DPhoenix::XBoxEvent*)e;
+		PandaEngine::XBoxEvent* xbe = (PandaEngine::XBoxEvent*)e;
 		if (xbe->mPadState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT)
 		{
-			mDeanyP->mInputs[(int)DPhoenix::DP_LEFT_INPUT] = true;
+			mDeanyP->mInputs[(int)PandaEngine::DP_LEFT_INPUT] = true;
 		}
 		if (xbe->mPadState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_RIGHT)
 		{
-			mDeanyP->mInputs[(int)DPhoenix::DP_RIGHT_INPUT] = true;
+			mDeanyP->mInputs[(int)PandaEngine::DP_RIGHT_INPUT] = true;
 		}
 		if (xbe->mPadState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_UP)
 		{
-			mDeanyP->mInputs[(int)DPhoenix::DP_UP_INPUT] = true;
+			mDeanyP->mInputs[(int)PandaEngine::DP_UP_INPUT] = true;
 		}
 		if (xbe->mPadState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_DOWN)
 		{
-			mDeanyP->mInputs[(int)DPhoenix::DP_DOWN_INPUT] = true;
+			mDeanyP->mInputs[(int)PandaEngine::DP_DOWN_INPUT] = true;
 		}
 		if (xbe->mPadState.Gamepad.wButtons & XINPUT_GAMEPAD_A)
 		{
-			mDeanyP->mInputs[(int)DPhoenix::DP_FIRE_INPUT] = true;
+			mDeanyP->mInputs[(int)PandaEngine::DP_FIRE_INPUT] = true;
 		}
 		if (xbe->mPadState.Gamepad.wButtons & XINPUT_GAMEPAD_B)
 		{
-			mDeanyP->mInputs[(int)DPhoenix::DP_JUMP_INPUT] = true;
+			mDeanyP->mInputs[(int)PandaEngine::DP_JUMP_INPUT] = true;
 		}
 		if (xbe->mPadState.Gamepad.wButtons & XINPUT_GAMEPAD_X)
 		{
-			mDeanyP->mInputs[(int)DPhoenix::DP_REFLECT_INPUT] = true;
+			mDeanyP->mInputs[(int)PandaEngine::DP_REFLECT_INPUT] = true;
 		}
 		if (xbe->mPadState.Gamepad.wButtons & XINPUT_GAMEPAD_Y)
 		{
@@ -1126,7 +1126,7 @@ void EnemiesDemo::InitAudio()
 
 }
 
-void EnemiesDemo::RenderSprite(DPhoenix::Sprite * sprite, ID3DX11EffectTechnique * tech, bool isHUD)
+void EnemiesDemo::RenderSprite(PandaEngine::Sprite * sprite, ID3DX11EffectTechnique * tech, bool isHUD)
 {
 	//here we calculate the scale on X and Y based on the client width / height
 	//vs. our original resolution 
@@ -1167,16 +1167,16 @@ void EnemiesDemo::RenderSprite(DPhoenix::Sprite * sprite, ID3DX11EffectTechnique
 	//concatenate world / view / projection matrices for rendering
 	XMMATRIX world = sprite->CalculateTransforms(scaleVec, isHUD);
 	XMMATRIX worldViewProj = XMMatrixMultiply(world, viewProj);
-	DPhoenix::Effects::SpriteFX->SetWorldViewProj(worldViewProj);
+	PandaEngine::Effects::SpriteFX->SetWorldViewProj(worldViewProj);
 
 	//now we get all the matching Sprite properties to send to the shader
-	DPhoenix::Effects::SpriteFX->SetDiffuseMap(sprite->GetShaderResourceView());			//texture
-	DPhoenix::Effects::SpriteFX->SetColumn(sprite->GetCurrentFrame());						//col / frame
-	DPhoenix::Effects::SpriteFX->SetNumCols(sprite->mAnimationColumns);						//num frames
-	DPhoenix::Effects::SpriteFX->SetFlipValue(sprite->mFlipValue);							//flip value
-	DPhoenix::Effects::SpriteFX->SetLerpValue(sprite->mColorLerpValue);						//lerp value
-	DPhoenix::Effects::SpriteFX->SetOpacityValue(sprite->mOpacityValue);					//opacity
-	DPhoenix::Effects::SpriteFX->SetAltColorValue(XMLoadFloat4(&sprite->mAltColorValue));	//alt color
+	PandaEngine::Effects::SpriteFX->SetDiffuseMap(sprite->GetShaderResourceView());			//texture
+	PandaEngine::Effects::SpriteFX->SetColumn(sprite->GetCurrentFrame());						//col / frame
+	PandaEngine::Effects::SpriteFX->SetNumCols(sprite->mAnimationColumns);						//num frames
+	PandaEngine::Effects::SpriteFX->SetFlipValue(sprite->mFlipValue);							//flip value
+	PandaEngine::Effects::SpriteFX->SetLerpValue(sprite->mColorLerpValue);						//lerp value
+	PandaEngine::Effects::SpriteFX->SetOpacityValue(sprite->mOpacityValue);					//opacity
+	PandaEngine::Effects::SpriteFX->SetAltColorValue(XMLoadFloat4(&sprite->mAltColorValue));	//alt color
 
 																							//render using effect shader technique
 	D3DX11_TECHNIQUE_DESC techDesc;
@@ -1191,12 +1191,12 @@ void EnemiesDemo::RenderSprite(DPhoenix::Sprite * sprite, ID3DX11EffectTechnique
 	}
 
 	//reset the lerp value on the shader
-	DPhoenix::Effects::SpriteFX->SetLerpValue(0.0f);
+	PandaEngine::Effects::SpriteFX->SetLerpValue(0.0f);
 }
 
 void EnemiesDemo::InitBackground()
 {
-	mBGSprite = new DPhoenix::Sprite();
+	mBGSprite = new PandaEngine::Sprite();
 	mBGSprite->Load("Textures\\LevelAssets\\BGdiv8.png", &mTexMgr, 2340.0f, 1125.0f, md3dDevice);
 	mBGSprite->SetCurrentFrame(0);	mBGSprite->mAnimationColumns = 1;
 	mBGSprite->mAnimationDirection = 0;	mBGSprite->SetAnimationRange(0, 0);
@@ -1238,17 +1238,17 @@ void EnemiesDemo::RenderMap(ID3DX11EffectTechnique* tech)
 		for (int col = colBegin; col < colEnd; col++)
 		{
 			//only render if not empty tiles
-			if (mMap->mTiles[row][col] != DPhoenix::EMPTY_TILE)
+			if (mMap->mTiles[row][col] != PandaEngine::EMPTY_TILE)
 			{
 				//check tile type to load correct texture
-				if (mMap->mTiles[row][col] == DPhoenix::BLOCK_TILE)
+				if (mMap->mTiles[row][col] == PandaEngine::BLOCK_TILE)
 				{
-					DPhoenix::Effects::SpriteFX->SetDiffuseMap(
+					PandaEngine::Effects::SpriteFX->SetDiffuseMap(
 						mMap->mSolidTileSprite->GetShaderResourceView());
 				}
-				else if (mMap->mTiles[row][col] == DPhoenix::ONEWAY_TILE)
+				else if (mMap->mTiles[row][col] == PandaEngine::ONEWAY_TILE)
 				{
-					DPhoenix::Effects::SpriteFX->SetDiffuseMap(
+					PandaEngine::Effects::SpriteFX->SetDiffuseMap(
 						mMap->mOneWayTileSprite->GetShaderResourceView());
 				}
 				//set the tile position 
@@ -1258,11 +1258,11 @@ void EnemiesDemo::RenderMap(ID3DX11EffectTechnique* tech)
 				//calculate and set matrices
 				XMMATRIX world = mMap->mSolidTileSprite->CalculateTransforms(scaleVec);
 				XMMATRIX worldViewProj = XMMatrixMultiply(world, viewProj);
-				DPhoenix::Effects::SpriteFX->SetWorldViewProj(worldViewProj);
+				PandaEngine::Effects::SpriteFX->SetWorldViewProj(worldViewProj);
 				//set standard shader values (use solid sprite as no difference in these values)
-				DPhoenix::Effects::SpriteFX->SetColumn(mMap->mSolidTileSprite->GetCurrentFrame());
-				DPhoenix::Effects::SpriteFX->SetNumCols(mMap->mSolidTileSprite->mAnimationColumns);
-				DPhoenix::Effects::SpriteFX->SetFlipValue(mMap->mSolidTileSprite->mFlipValue);
+				PandaEngine::Effects::SpriteFX->SetColumn(mMap->mSolidTileSprite->GetCurrentFrame());
+				PandaEngine::Effects::SpriteFX->SetNumCols(mMap->mSolidTileSprite->mAnimationColumns);
+				PandaEngine::Effects::SpriteFX->SetFlipValue(mMap->mSolidTileSprite->mFlipValue);
 				//use technique to render
 				D3DX11_TECHNIQUE_DESC techDesc;
 				tech->GetDesc(&techDesc);
@@ -1284,14 +1284,14 @@ void EnemiesDemo::ReInit()
 	//player - reset stats and states
 	mDeanyP->mLives = 3; mDeanyP->mMaxKnowledge = 100; mDeanyP->mKnowledge = 100;
 	mDeanyP->mMaxHealth = 100; mDeanyP->mHealth = 100;
-	mDeanyP->mLifeState = DPhoenix::DP_OK_LIFESTATE;
+	mDeanyP->mLifeState = PandaEngine::DP_OK_LIFESTATE;
 	mDeanyP->mLastLifeFlag = false;
 	//clear existing vectors
 	mCollectablesVec.clear(); mEnemySpawnVec.clear();
 	mEnemiesVec.clear();
 	
 	//map - reload
-	mMap = new DPhoenix::Map("Data\\Levels\\TestLevel.csv", &mTexMgr, md3dDevice, 
+	mMap = new PandaEngine::Map("Data\\Levels\\TestLevel.csv", &mTexMgr, md3dDevice, 
 		mCollectablesVec, mEnemySpawnVec,
 		48, 30, 2, 1);
 	//reset player position to spawn point
@@ -1304,20 +1304,20 @@ void EnemiesDemo::ReInit()
 	for (int i = 0; i < mEnemySpawnVec.size(); i++)
 	{
 
-		switch ((DPhoenix::EnemyTypesForMap)i)
+		switch ((PandaEngine::EnemyTypesForMap)i)
 		{
-		case DPhoenix::ENEMYMAP_CHEMPLANE:
+		case PandaEngine::ENEMYMAP_CHEMPLANE:
 			for (int j = 0; j < mEnemySpawnVec[i].size(); j++)
 			{
-				mEnemiesVec.push_back(new DPhoenix::ChemPlane(&mTexMgr, md3dDevice, 
+				mEnemiesVec.push_back(new PandaEngine::ChemPlane(&mTexMgr, md3dDevice, 
 					*mEnemySpawnVec[i][j], &mAudioMgr));
 			}
 
 			break;
-		case DPhoenix::ENEMYMAP_ANTIVAX:
+		case PandaEngine::ENEMYMAP_ANTIVAX:
 			for (int j = 0; j < mEnemySpawnVec[i].size(); j++)
 			{
-				mEnemiesVec.push_back(new DPhoenix::AntiVax(&mTexMgr, md3dDevice, 
+				mEnemiesVec.push_back(new PandaEngine::AntiVax(&mTexMgr, md3dDevice, 
 					*mEnemySpawnVec[i][j], &mAudioMgr));
 			}
 

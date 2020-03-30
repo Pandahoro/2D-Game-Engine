@@ -1,10 +1,10 @@
 #include "Angel.h"
 
-DPhoenix::Angel::Angel(TextureMgr * mTexMgr, ID3D11Device * md3dDevice, 
+PandaEngine::Angel::Angel(TextureMgr * mTexMgr, ID3D11Device * md3dDevice, 
 	XMFLOAT2 position, XMFLOAT2 direction)
 {
 	//spritesheet properties
-	mAngelSprite = new DPhoenix::Sprite();
+	mAngelSprite = new PandaEngine::Sprite();
 	mAngelSprite->Load("Textures\\Enemies\\Angel.png", mTexMgr, 50.0f, 50.0f, md3dDevice);
 	mAngelSprite->SetCurrentFrame(0);	mAngelSprite->mAnimationColumns = 4;
 	mAngelSprite->mAnimationDirection = 10;	mAngelSprite->SetAnimationRange(0, 3);
@@ -21,7 +21,7 @@ DPhoenix::Angel::Angel(TextureMgr * mTexMgr, ID3D11Device * md3dDevice,
 }
 
 //update logic
-void DPhoenix::Angel::Update(float deltaTime)
+void PandaEngine::Angel::Update(float deltaTime)
 {
 	//adjust speed by acceleration value (* dt)
 	mSpeed += mAcceleration * deltaTime;

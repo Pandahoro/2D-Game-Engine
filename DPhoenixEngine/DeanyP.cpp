@@ -1,55 +1,55 @@
 #include "DeanyP.h"
 
-DPhoenix::DeanyP::DeanyP(TextureMgr* mTexMgr, ID3D11Device* md3dDevice, AudioMgr* audioMgr)
+PandaEngine::DeanyP::DeanyP(TextureMgr* mTexMgr, ID3D11Device* md3dDevice, AudioMgr* audioMgr)
 {
 	//initilaise ALL the SPRITES -----------------------------------------------
 	//(big section)
 
 #pragma region SpritesheetInit
 	//dying
-	mDieSprite = new DPhoenix::Sprite();
+	mDieSprite = new PandaEngine::Sprite();
 	mDieSprite->Load("Textures\\DeanyP\\Die.png", mTexMgr, 60.0f, 100.0f, md3dDevice);
 	mDieSprite->SetCurrentFrame(0);	mDieSprite->mAnimationColumns = 16;
 	mDieSprite->mAnimationDirection = 12;	mDieSprite->SetAnimationRange(0, 15);
 	mDieSprite->SetScale(1.0f);	mDieSprite->mFlipValue = 1.0f;
 	//idle
-	mIdleSprite = new DPhoenix::Sprite();
+	mIdleSprite = new PandaEngine::Sprite();
 	mIdleSprite->Load("Textures\\DeanyP\\Idle.png", mTexMgr, 50.0f, 100.0f, md3dDevice);
 	mIdleSprite->SetCurrentFrame(0);	mIdleSprite->mAnimationColumns = 16;
 	mIdleSprite->mAnimationDirection = 10;	mIdleSprite->SetAnimationRange(0, 15);
 	mIdleSprite->SetScale(1.0f);	mIdleSprite->mFlipValue = 1.0f;
 	//reflecting (charging)
-	mReflectSprite = new DPhoenix::Sprite();
+	mReflectSprite = new PandaEngine::Sprite();
 	mReflectSprite->Load("Textures\\DeanyP\\Reflect.png", mTexMgr, 50.0f, 100.0f, md3dDevice);
 	mReflectSprite->SetCurrentFrame(0);	mReflectSprite->mAnimationColumns = 8;
 	mReflectSprite->mAnimationDirection = 7;	mReflectSprite->SetAnimationRange(0, 7);
 	mReflectSprite->SetScale(1.0f);	mReflectSprite->mFlipValue = 1.0f;
 	//running
-	mRunSprite = new DPhoenix::Sprite();
+	mRunSprite = new PandaEngine::Sprite();
 	mRunSprite->Load("Textures\\DeanyP\\Run.png", mTexMgr, 75.0f, 100.0f, md3dDevice);
 	mRunSprite->SetCurrentFrame(0);	mRunSprite->mAnimationColumns = 12;
 	mRunSprite->mAnimationDirection = 16;	mRunSprite->SetAnimationRange(0, 11);
 	mRunSprite->SetScale(1.0f);	mRunSprite->mFlipValue = 1.0f;
 	//running and gunning
-	mRunFFwdSprite = new DPhoenix::Sprite();
+	mRunFFwdSprite = new PandaEngine::Sprite();
 	mRunFFwdSprite->Load("Textures\\DeanyP\\RunFFwd.png", mTexMgr, 75.0f, 100.0f, md3dDevice);
 	mRunFFwdSprite->SetCurrentFrame(0);	mRunFFwdSprite->mAnimationColumns = 12;
 	mRunFFwdSprite->mAnimationDirection = 16;	mRunFFwdSprite->SetAnimationRange(0, 11);
 	mRunFFwdSprite->SetScale(1.0f);	mRunFFwdSprite->mFlipValue = 1.0f;
 	//standing and firing
-	mStandFFwdSprite = new DPhoenix::Sprite();
+	mStandFFwdSprite = new PandaEngine::Sprite();
 	mStandFFwdSprite->Load("Textures\\DeanyP\\StandFFwd.png", mTexMgr, 55.0f, 100.0f, md3dDevice);
 	mStandFFwdSprite->SetCurrentFrame(0);	mStandFFwdSprite->mAnimationColumns = 4;
 	mStandFFwdSprite->mAnimationDirection = 16;	mStandFFwdSprite->SetAnimationRange(0, 3);
 	mStandFFwdSprite->SetScale(1.0f);	mStandFFwdSprite->mFlipValue = 1.0f;
 	//jumping
-	mJumpSprite = new DPhoenix::Sprite();
+	mJumpSprite = new PandaEngine::Sprite();
 	mJumpSprite->Load("Textures\\DeanyP\\Jump.png", mTexMgr, 55.0f, 100.0f, md3dDevice);
 	mJumpSprite->SetCurrentFrame(0);	mJumpSprite->mAnimationColumns = 4;
 	mJumpSprite->mAnimationDirection = 16;	mJumpSprite->SetAnimationRange(0, 3);
 	mJumpSprite->SetScale(1.0f);	mJumpSprite->mFlipValue = 1.0f;
 	//jumping and firing
-	mJumpFFwdSprite = new DPhoenix::Sprite();
+	mJumpFFwdSprite = new PandaEngine::Sprite();
 	mJumpFFwdSprite->Load("Textures\\DeanyP\\JumpFFwd.png", mTexMgr, 55.0f, 100.0f, md3dDevice);
 	mJumpFFwdSprite->SetCurrentFrame(0);	mJumpFFwdSprite->mAnimationColumns = 4;
 	mJumpFFwdSprite->mAnimationDirection = 16;	mJumpFFwdSprite->SetAnimationRange(0, 3);
@@ -123,7 +123,7 @@ DPhoenix::DeanyP::DeanyP(TextureMgr* mTexMgr, ID3D11Device* md3dDevice, AudioMgr
 
 }
 
-void DPhoenix::DeanyP::CharacterUpdate(float deltaTime, DPhoenix::Map* map)
+void PandaEngine::DeanyP::CharacterUpdate(float deltaTime, PandaEngine::Map* map)
 {
 	//reset firing flag
 	mToFireFlag = false;
@@ -517,25 +517,25 @@ void DPhoenix::DeanyP::CharacterUpdate(float deltaTime, DPhoenix::Map* map)
 }
 
 //if the 'key' isn't currently pressed but was on last frame
-bool DPhoenix::DeanyP::Released(DeanyPInputs key)
+bool PandaEngine::DeanyP::Released(DeanyPInputs key)
 {
 	return (!mInputs[(int)key] && mPrevInputs[(int)key]);
 }
 
 //if the 'key' is presssed
-bool DPhoenix::DeanyP::KeyState(DeanyPInputs key)
+bool PandaEngine::DeanyP::KeyState(DeanyPInputs key)
 {
 	return (mInputs[(int)key]);
 }
 
 //if the 'key' is pressed and wasn't on last frame 
-bool DPhoenix::DeanyP::Pressed(DeanyPInputs key)
+bool PandaEngine::DeanyP::Pressed(DeanyPInputs key)
 {
 	return (mInputs[(int)key] && !mPrevInputs[(int)key]);
 }
 
 //transfer current input values to previous inputs
-void DPhoenix::DeanyP::UpdatePrevInputs()
+void PandaEngine::DeanyP::UpdatePrevInputs()
 {
 	for (int i = 0; i < DP_MAX_INPUT; i++)
 	{
@@ -547,7 +547,7 @@ void DPhoenix::DeanyP::UpdatePrevInputs()
 }
 
 //handle damage ---
-void DPhoenix::DeanyP::TakeDamage(int dmg)
+void PandaEngine::DeanyP::TakeDamage(int dmg)
 {
 	//if OK
 	if (mLifeState == DP_OK_LIFESTATE)

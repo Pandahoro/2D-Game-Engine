@@ -1,6 +1,6 @@
 #include "Camera2D.h"
 
-void DPhoenix::Camera2D::Update(float deltaTime, int clientWidth, int clientHeight)
+void PandaEngine::Camera2D::Update(float deltaTime, int clientWidth, int clientHeight)
 {
 	//set the window dimensions
 	mClientWidth = clientWidth;
@@ -40,7 +40,7 @@ void DPhoenix::Camera2D::Update(float deltaTime, int clientWidth, int clientHeig
 	UpdatePrevInputs();
 }
 
-XMMATRIX DPhoenix::Camera2D::GetViewProj(XMFLOAT2 parallax)
+XMMATRIX PandaEngine::Camera2D::GetViewProj(XMFLOAT2 parallax)
 {
 	//camera translation matrix needs to be inverted
 	//multiplying by a parallax value adjusts scroll speed for bg / fg assets
@@ -62,25 +62,25 @@ XMMATRIX DPhoenix::Camera2D::GetViewProj(XMFLOAT2 parallax)
 }
 
 //has key been released?
-bool DPhoenix::Camera2D::Released(Camera2DInputs key)
+bool PandaEngine::Camera2D::Released(Camera2DInputs key)
 {
 	return (!mInputs[(int)key] && mPrevInputs[(int)key]);
 }
 
 //is an input active given the key?
-bool DPhoenix::Camera2D::KeyState(Camera2DInputs key)
+bool PandaEngine::Camera2D::KeyState(Camera2DInputs key)
 {
 	return (mInputs[(int)key]);
 }
 
 //has an input just been pressed given the key?
-bool DPhoenix::Camera2D::Pressed(Camera2DInputs key)
+bool PandaEngine::Camera2D::Pressed(Camera2DInputs key)
 {
 	return (mInputs[(int)key] && !mPrevInputs[(int)key]);
 }
 
 //update the previous inputs array
-void DPhoenix::Camera2D::UpdatePrevInputs()
+void PandaEngine::Camera2D::UpdatePrevInputs()
 {
 	for (int i = 0; i < CAMERA2D_MAX_INPUT; i++)
 	{

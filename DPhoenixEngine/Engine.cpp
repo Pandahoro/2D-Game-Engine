@@ -5,7 +5,7 @@ namespace
 	// This is just used to forward Windows messages from a global window
 	// procedure to our member function window procedure because we cannot
 	// assign a member function to WNDCLASS::lpfnWndProc.
-	DPhoenix::Engine* gd3dApp = 0;
+	PandaEngine::Engine* gd3dApp = 0;
 }
 
 LRESULT CALLBACK
@@ -15,7 +15,7 @@ MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	// before CreateWindow returns, and thus before mhMainWnd is valid.
 	return gd3dApp->MsgProc(hwnd, msg, wParam, lParam);
 }
-namespace DPhoenix
+namespace PandaEngine
 {
 	Engine::Engine(HINSTANCE hInstance)
 		: mhAppInst(hInstance),

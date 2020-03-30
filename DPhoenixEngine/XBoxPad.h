@@ -2,7 +2,7 @@
 
 #include "D3DUtil.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	class XboxPad
 	{

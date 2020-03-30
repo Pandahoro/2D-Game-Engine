@@ -1,6 +1,6 @@
 #include "Moving2DObject.h"
 
-void DPhoenix::Moving2DObject::UpdatePhysics(float deltaTime, DPhoenix::Map* map)
+void PandaEngine::Moving2DObject::UpdatePhysics(float deltaTime, PandaEngine::Map* map)
 {
 	//hold old values before calculations
 	mOldPosition = mPosition;
@@ -82,8 +82,8 @@ void DPhoenix::Moving2DObject::UpdatePhysics(float deltaTime, DPhoenix::Map* map
 
 }
 
-bool DPhoenix::Moving2DObject::HasGround(XMFLOAT2 oldPosition, XMFLOAT2 position,
-	XMFLOAT2 speed, float* groundY, DPhoenix::Map* map)
+bool PandaEngine::Moving2DObject::HasGround(XMFLOAT2 oldPosition, XMFLOAT2 position,
+	XMFLOAT2 speed, float* groundY, PandaEngine::Map* map)
 {
 	//old positions calculated too in case we are falling too fast (bullet through paper)
 	XMFLOAT2 oldCenter(oldPosition.x + mAABBOffset.x, oldPosition.y + mAABBOffset.y);
@@ -158,8 +158,8 @@ bool DPhoenix::Moving2DObject::HasGround(XMFLOAT2 oldPosition, XMFLOAT2 position
 	return false;
 }
 
-bool DPhoenix::Moving2DObject::HasCeiling(XMFLOAT2 oldPosition, XMFLOAT2 position,
-	XMFLOAT2 speed, float* ceilingY, DPhoenix::Map* map)
+bool PandaEngine::Moving2DObject::HasCeiling(XMFLOAT2 oldPosition, XMFLOAT2 position,
+	XMFLOAT2 speed, float* ceilingY, PandaEngine::Map* map)
 {
 	//old positions calculated too in case we are jumping too fast (bullet through paper)
 	XMFLOAT2 oldCenter(oldPosition.x + mAABBOffset.x, oldPosition.y + mAABBOffset.y);
@@ -223,8 +223,8 @@ bool DPhoenix::Moving2DObject::HasCeiling(XMFLOAT2 oldPosition, XMFLOAT2 positio
 	return false;
 }
 
-bool DPhoenix::Moving2DObject::CollidesWithLeftWall(XMFLOAT2 oldPosition, XMFLOAT2 position, 
-		float * wallX, DPhoenix::Map * map)
+bool PandaEngine::Moving2DObject::CollidesWithLeftWall(XMFLOAT2 oldPosition, XMFLOAT2 position, 
+		float * wallX, PandaEngine::Map * map)
 {
 	//old positions calculated too in case we are moving too fast
 	XMFLOAT2 oldCenter(oldPosition.x + mAABBOffset.x, oldPosition.y + mAABBOffset.y);
@@ -292,8 +292,8 @@ bool DPhoenix::Moving2DObject::CollidesWithLeftWall(XMFLOAT2 oldPosition, XMFLOA
 	return false;
 }
 
-bool DPhoenix::Moving2DObject::CollidesWithRightWall(XMFLOAT2 oldPosition, XMFLOAT2 position,
-	float * wallX, DPhoenix::Map * map)
+bool PandaEngine::Moving2DObject::CollidesWithRightWall(XMFLOAT2 oldPosition, XMFLOAT2 position,
+	float * wallX, PandaEngine::Map * map)
 {
 	//old positions calculated too in case we are moving too fast
 	XMFLOAT2 oldCenter(oldPosition.x + mAABBOffset.x, oldPosition.y + mAABBOffset.y);

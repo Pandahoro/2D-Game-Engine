@@ -1,6 +1,6 @@
 #include "GameTimer.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	//constructor - initialise members
 	GameTimer::GameTimer()

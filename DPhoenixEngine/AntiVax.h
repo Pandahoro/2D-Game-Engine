@@ -1,7 +1,7 @@
 #pragma once
 #include "Enemy.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	enum AntiVaxMoveStates
 	{
@@ -43,7 +43,7 @@ namespace DPhoenix
 		~AntiVax() { };
 
 		//update logic
-		void EnemyUpdate(float deltaTime, DPhoenix::Map* map, 
+		void EnemyUpdate(float deltaTime, PandaEngine::Map* map, 
 			XMFLOAT2 playerPos);
 		//handle damage
 		bool TakeDamage(int dmg, AABB2D fireBox);

@@ -1,7 +1,7 @@
 //#include "Engine.h"
 //
 ////initial class definition inheriting fron Engine
-//class InitDirect3DApp : public DPhoenix::Engine
+//class InitDirect3DApp : public PandaEngine::Engine
 //{
 //public:
 //	InitDirect3DApp(HINSTANCE hInstance);

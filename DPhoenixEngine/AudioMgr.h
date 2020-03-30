@@ -1,7 +1,7 @@
 #pragma once
 #include "D3DUtil.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 
 	//mirrors the TextureMgr class; contains a map so that

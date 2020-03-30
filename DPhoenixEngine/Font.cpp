@@ -1,6 +1,6 @@
 #include "D3DUtil.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	Font::Font(HWND hWindow, ID2D1SolidColorBrush* brush, 
 		IDWriteFactory * writeFactory, std::string fontFamily, float size)

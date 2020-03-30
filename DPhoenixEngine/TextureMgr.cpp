@@ -1,6 +1,6 @@
 #include "TextureMgr.h"
 
-namespace DPhoenix 
+namespace PandaEngine 
 {
 
 	//constructor - zero device pointer until init

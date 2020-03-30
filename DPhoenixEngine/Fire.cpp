@@ -1,6 +1,6 @@
 #include "Fire.h"
 
-DPhoenix::Fire::Fire(TextureMgr* mTexMgr, ID3D11Device* md3dDevice, XMFLOAT2 position, 
+PandaEngine::Fire::Fire(TextureMgr* mTexMgr, ID3D11Device* md3dDevice, XMFLOAT2 position, 
 	XMFLOAT2 direction, FireTypes fireType, AudioMgr* audioMgr)
 {
 	//init vars based on parameters
@@ -19,7 +19,7 @@ DPhoenix::Fire::Fire(TextureMgr* mTexMgr, ID3D11Device* md3dDevice, XMFLOAT2 pos
 		case FIRE_PLAYER:	//'knowledge' fireballs from the player
 		{
 			//spritesheet init
-			mFireSprite = new DPhoenix::Sprite();
+			mFireSprite = new PandaEngine::Sprite();
 			mFireSprite->Load("Textures\\ObjectAssets\\KnowledgeFire.png", mTexMgr, 20.0f, 20.0f, md3dDevice);
 			mFireSprite->SetCurrentFrame(0);	mFireSprite->mAnimationColumns = 8;
 			mFireSprite->mAnimationDirection = 16;	mFireSprite->SetAnimationRange(0, 7);
@@ -36,7 +36,7 @@ DPhoenix::Fire::Fire(TextureMgr* mTexMgr, ID3D11Device* md3dDevice, XMFLOAT2 pos
 		case FIRE_CHEMTRAILS:
 		{
 			//spritesheet init
-			mFireSprite = new DPhoenix::Sprite();
+			mFireSprite = new PandaEngine::Sprite();
 			mFireSprite->Load("Textures\\Enemies\\Chemtrails.png", mTexMgr, 50.0f, 50.0f, md3dDevice);
 			mFireSprite->SetCurrentFrame(0);	mFireSprite->mAnimationColumns = 10;
 			mFireSprite->mAnimationDirection = 6;	mFireSprite->SetAnimationRange(0, 9);
@@ -53,7 +53,7 @@ DPhoenix::Fire::Fire(TextureMgr* mTexMgr, ID3D11Device* md3dDevice, XMFLOAT2 pos
 		case FIRE_SYRINGE:
 		{
 			//spritesheet init
-			mFireSprite = new DPhoenix::Sprite();
+			mFireSprite = new PandaEngine::Sprite();
 			mFireSprite->Load("Textures\\Enemies\\Syringe.png", mTexMgr, 20.0f, 20.0f, md3dDevice);
 			mFireSprite->SetCurrentFrame(0);	mFireSprite->mAnimationColumns = 8;
 			mFireSprite->mAnimationDirection = 12;	mFireSprite->SetAnimationRange(0, 7);
@@ -93,7 +93,7 @@ DPhoenix::Fire::Fire(TextureMgr* mTexMgr, ID3D11Device* md3dDevice, XMFLOAT2 pos
 }
 
 //update logic
-void DPhoenix::Fire::Update(float deltaTime)
+void PandaEngine::Fire::Update(float deltaTime)
 {
 
 	//update overall time elapsed (used for SUVAT)

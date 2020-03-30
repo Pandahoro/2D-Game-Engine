@@ -21,7 +21,7 @@ public:
 	HRESULT Close();
 };
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	class Sound {
 	private:

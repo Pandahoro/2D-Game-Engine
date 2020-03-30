@@ -2,7 +2,7 @@
 #include "D3DUtil.h"
 #include "AABB2D.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	//enumeration for types of fireball / projectile
 	enum FireTypes

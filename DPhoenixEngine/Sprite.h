@@ -2,7 +2,7 @@
 
 #include "D3DUtil.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	//defined in it's own file but ensures can be used for Sprite
 	class TextureMgr;

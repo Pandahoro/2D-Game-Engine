@@ -1,7 +1,7 @@
 //#include "Engine.h"
 //
 ////initial class definition inheriting fron Engine
-//class InputAndEventsDemo : public DPhoenix::Engine
+//class InputAndEventsDemo : public PandaEngine::Engine
 //{
 //private:
 //	//depth stencil (to handle multiple overlayed sprites)
@@ -15,7 +15,7 @@
 //	ID3D11Buffer* mSpriteIB;
 //
 //	//texture manager
-//	DPhoenix::TextureMgr mTexMgr;
+//	PandaEngine::TextureMgr mTexMgr;
 //
 //	//sprite shader resource view pointer (texture)
 //	ID3D11ShaderResourceView* mSpriteTexSRV;
@@ -46,7 +46,7 @@
 //	void BuildGeometryBuffers();
 //
 //	//new method / implements event handling
-//	void InputAndEventsDemo::HandleEvents(DPhoenix::IEvent* e);
+//	void InputAndEventsDemo::HandleEvents(PandaEngine::IEvent* e);
 //};
 //
 ////our epplication entry point - WinMain
@@ -81,8 +81,8 @@
 //	ReleaseCOM(mSpriteVB);
 //	ReleaseCOM(mSpriteIB);
 //
-//	DPhoenix::Effects::DestroyAll();
-//	DPhoenix::InputLayouts::DestroyAll();
+//	PandaEngine::Effects::DestroyAll();
+//	PandaEngine::InputLayouts::DestroyAll();
 //}
 //
 ////any additional initialisation (we generally initiaise game assets here)
@@ -95,8 +95,8 @@
 //	mTexMgr.Init(md3dDevice);
 //
 //	// Must init Effects first since InputLayouts depend on shader signatures.
-//	DPhoenix::Effects::InitAll(md3dDevice);
-//	DPhoenix::InputLayouts::InitAll(md3dDevice);
+//	PandaEngine::Effects::InitAll(md3dDevice);
+//	PandaEngine::InputLayouts::InitAll(md3dDevice);
 //
 //	//create the texture with the texture manager and store pointer
 //	mSpriteTexSRV = mTexMgr.CreateTexture("Textures\\LifeHead.png");
@@ -312,7 +312,7 @@
 //	assert(mSwapChain);
 //
 //	//set the effect techniques we wish to use
-//	ID3DX11EffectTechnique* activeSpriteTech = DPhoenix::Effects::SpriteFX->SpriteTech;
+//	ID3DX11EffectTechnique* activeSpriteTech = PandaEngine::Effects::SpriteFX->SpriteTech;
 //
 //	//clear the screen with the defined colour
 //	float clearColor[4] = { 0.0f, 0.2f, 0.4f, 1.0f };
@@ -321,7 +321,7 @@
 //
 //	//set up the vertex input layout
 //	//(would need to change for different types of rendering)
-//	md3dImmediateContext->IASetInputLayout(DPhoenix::InputLayouts::SpritePosTex);
+//	md3dImmediateContext->IASetInputLayout(PandaEngine::InputLayouts::SpritePosTex);
 //	//set primitive topology as triangle list (adjacent trinagles to render for GPU efficiency)
 //	md3dImmediateContext->IASetPrimitiveTopology(
 //		D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -385,9 +385,9 @@
 //	//concatenate world / view / projection matrices for rendering
 //	XMMATRIX worldViewProj = XMMatrixMultiply(world, viewProj);
 //	//send to shader
-//	DPhoenix::Effects::SpriteFX->SetWorldViewProj(worldViewProj);
+//	PandaEngine::Effects::SpriteFX->SetWorldViewProj(worldViewProj);
 //	//send texture to sahder (SRV)
-//	DPhoenix::Effects::SpriteFX->SetDiffuseMap(mSpriteTexSRV);
+//	PandaEngine::Effects::SpriteFX->SetDiffuseMap(mSpriteTexSRV);
 //
 //	//render using effect shader technique
 //	D3DX11_TECHNIQUE_DESC techDesc;
@@ -411,13 +411,13 @@
 //
 //}
 //
-//void InputAndEventsDemo::HandleEvents(DPhoenix::IEvent* e)
+//void InputAndEventsDemo::HandleEvents(PandaEngine::IEvent* e)
 //{
 //	switch (e->GetID())
 //	{
-//	case DPhoenix::EVENT_KEYPRESS:
+//	case PandaEngine::EVENT_KEYPRESS:
 //	{
-//		DPhoenix::KeyPressEvent* kpe = (DPhoenix::KeyPressEvent*)e;
+//		PandaEngine::KeyPressEvent* kpe = (PandaEngine::KeyPressEvent*)e;
 //		switch (kpe->mKeycode)
 //		{
 //		case DIK_D:
@@ -438,9 +438,9 @@
 //		}
 //	}
 //	break;
-//	case DPhoenix::EVENT_XBOX_INPUT:
+//	case PandaEngine::EVENT_XBOX_INPUT:
 //	{
-//		DPhoenix::XBoxEvent* xbe = (DPhoenix::XBoxEvent*)e;
+//		PandaEngine::XBoxEvent* xbe = (PandaEngine::XBoxEvent*)e;
 //		if (xbe->mPadState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT)
 //		{
 //			mVelocity.x = -500.0f;

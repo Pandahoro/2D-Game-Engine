@@ -2,7 +2,7 @@
 #include "D3DUtil.h"
 #include "Collectable.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	//sort of duplication but prevents circular linking
 	//the things we do to avoid globals eh?

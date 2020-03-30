@@ -1,12 +1,12 @@
 #include "AudioMgr.h"
 
 //blank constructor
-DPhoenix::AudioMgr::AudioMgr()
+PandaEngine::AudioMgr::AudioMgr()
 {
 
 }
 
-DPhoenix::AudioMgr::~AudioMgr()
+PandaEngine::AudioMgr::~AudioMgr()
 {
 	//(second in map structures refers to the second data item)
 	//(usually the data rather than the key, in this case)
@@ -22,13 +22,13 @@ DPhoenix::AudioMgr::~AudioMgr()
 	mAudioMap.clear();
 }
 
-void DPhoenix::AudioMgr::Init(ID3D11Device * device)
+void PandaEngine::AudioMgr::Init(ID3D11Device * device)
 {
 
 }
 
 //Create texture or supply existing - takes in key / filename
-DPhoenix::Sound* DPhoenix::AudioMgr::CreateSound(std::string keyName,
+PandaEngine::Sound* PandaEngine::AudioMgr::CreateSound(std::string keyName,
 	std::string filename)
 {
 	Sound* sound = 0;
@@ -45,7 +45,7 @@ DPhoenix::Sound* DPhoenix::AudioMgr::CreateSound(std::string keyName,
 		strcpy(fileNameConvert, filename.c_str());
 
 		//load the sound
-		sound = new DPhoenix::Sound(fileNameConvert);
+		sound = new PandaEngine::Sound(fileNameConvert);
 
 		//store in map
 		mAudioMap[keyName] = sound;
@@ -58,7 +58,7 @@ DPhoenix::Sound* DPhoenix::AudioMgr::CreateSound(std::string keyName,
 }
 
 //retrieves a sound pointer by key if it already exists
-DPhoenix::Sound * DPhoenix::AudioMgr::GetSound(std::string keyName)
+PandaEngine::Sound * PandaEngine::AudioMgr::GetSound(std::string keyName)
 {
 	// Does it already exist?
 	if (mAudioMap.find(keyName) != mAudioMap.end())
@@ -72,7 +72,7 @@ DPhoenix::Sound * DPhoenix::AudioMgr::GetSound(std::string keyName)
 }
 
 //stop all sounds and set position to 0
-void DPhoenix::AudioMgr::ResetAllSounds()
+void PandaEngine::AudioMgr::ResetAllSounds()
 {
 	//(second in map structures refers to the second data item)
 	//(usually the data rather than the key, in this case)

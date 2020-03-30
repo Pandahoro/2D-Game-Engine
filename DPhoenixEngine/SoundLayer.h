@@ -2,7 +2,7 @@
 
 #include "D3DUtil.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	//defined elsehwhere but needs declaration here
 	//as referenced in SoundLayer class declaration

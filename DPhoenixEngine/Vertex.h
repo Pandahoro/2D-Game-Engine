@@ -14,7 +14,7 @@ namespace Vertex
 
 }
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	//InputLayoutDesc class necessary to define 'input layout'
 	//for the shader (e.g. how the data should be treated)

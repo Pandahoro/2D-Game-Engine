@@ -2,7 +2,7 @@
 
 #include "D3DUtil.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 
 //this region is the overall effect class used to construct all effects

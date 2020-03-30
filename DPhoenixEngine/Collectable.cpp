@@ -1,6 +1,6 @@
 #include "Collectable.h"
 
-DPhoenix::Collectable::Collectable(TextureMgr * mTexMgr, ID3D11Device * md3dDevice,
+PandaEngine::Collectable::Collectable(TextureMgr * mTexMgr, ID3D11Device * md3dDevice,
 	XMFLOAT2 position, CollectableTypes type, bool isOnTimer)
 {
 	//initialise values
@@ -12,7 +12,7 @@ DPhoenix::Collectable::Collectable(TextureMgr * mTexMgr, ID3D11Device * md3dDevi
 	{
 		case COLLECTABLE_RESEARCH:
 		{
-			mCollectibleSprite = new DPhoenix::Sprite();
+			mCollectibleSprite = new PandaEngine::Sprite();
 			mCollectibleSprite->Load("Textures\\ObjectAssets\\Research.png", mTexMgr, 30.0f, 30.0f, md3dDevice);
 			mCollectibleSprite->SetCurrentFrame(0);	mCollectibleSprite->mAnimationColumns = 4;
 			mCollectibleSprite->mAnimationDirection = 6;	mCollectibleSprite->SetAnimationRange(0, 3);
@@ -21,7 +21,7 @@ DPhoenix::Collectable::Collectable(TextureMgr * mTexMgr, ID3D11Device * md3dDevi
 		break;
 		case COLLECTABLE_COFFEE:
 		{
-			mCollectibleSprite = new DPhoenix::Sprite();
+			mCollectibleSprite = new PandaEngine::Sprite();
 			mCollectibleSprite->Load("Textures\\ObjectAssets\\Coffee.png", mTexMgr, 30.0f, 60.0f, md3dDevice);
 			mCollectibleSprite->SetCurrentFrame(0);	mCollectibleSprite->mAnimationColumns = 4;
 			mCollectibleSprite->mAnimationDirection = 6;	mCollectibleSprite->SetAnimationRange(0, 3);
@@ -50,7 +50,7 @@ DPhoenix::Collectable::Collectable(TextureMgr * mTexMgr, ID3D11Device * md3dDevi
 
 }
 //update logic
-void DPhoenix::Collectable::Update(float dt)
+void PandaEngine::Collectable::Update(float dt)
 {
 	//update sprite animation
 	mCollectibleSprite->Update(dt);

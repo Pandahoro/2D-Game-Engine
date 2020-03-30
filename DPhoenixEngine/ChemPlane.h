@@ -1,7 +1,7 @@
 #pragma once
 #include "Enemy.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	enum ChemPlaneMoveStates
 	{
@@ -27,7 +27,7 @@ namespace DPhoenix
 		~ChemPlane() { };
 
 		//update logic
-		void EnemyUpdate(float deltaTime, DPhoenix::Map* map, XMFLOAT2 playerPos);
+		void EnemyUpdate(float deltaTime, PandaEngine::Map* map, XMFLOAT2 playerPos);
 		//handle damage
 		bool TakeDamage(int dmg, AABB2D fireBox);
 		//reset timers

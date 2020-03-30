@@ -2,7 +2,7 @@
 #include "Moving2DObject.h"
 #include "Fire.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	enum EnemyTypes
 	{
@@ -65,7 +65,7 @@ namespace DPhoenix
 		~Enemy() {};
 
 		//update method to be overwritten by child classes
-		virtual void EnemyUpdate(float deltaTime, DPhoenix::Map* map, XMFLOAT2 playerPos) { };
+		virtual void EnemyUpdate(float deltaTime, PandaEngine::Map* map, XMFLOAT2 playerPos) { };
 		//method to take damage
 		virtual bool TakeDamage(int dmg, AABB2D fireBox) { return false; };
 		//method to reset timers - useful if offscreen

@@ -4,7 +4,7 @@
 //this is where we define the input layouts for the shader
 #pragma region InputLayoutDesc
 
-const D3D11_INPUT_ELEMENT_DESC DPhoenix::InputLayoutDesc::SpritePosTex[2] =
+const D3D11_INPUT_ELEMENT_DESC PandaEngine::InputLayoutDesc::SpritePosTex[2] =
 {
 	//the first value (FLOAT3) is for the vertex POSITION
 	{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
@@ -18,10 +18,10 @@ const D3D11_INPUT_ELEMENT_DESC DPhoenix::InputLayoutDesc::SpritePosTex[2] =
 #pragma region InputLayouts
 
 //set input layouts to zero before initialisation
-ID3D11InputLayout* DPhoenix::InputLayouts::SpritePosTex = 0;
+ID3D11InputLayout* PandaEngine::InputLayouts::SpritePosTex = 0;
 
 //initialise all input layouts
-void DPhoenix::InputLayouts::InitAll(ID3D11Device* device)
+void PandaEngine::InputLayouts::InitAll(ID3D11Device* device)
 {
 	//shader 'pass' description truct
 	D3DX11_PASS_DESC passDesc;
@@ -41,7 +41,7 @@ void DPhoenix::InputLayouts::InitAll(ID3D11Device* device)
 }
 
 //release memory of input layouts
-void DPhoenix::InputLayouts::DestroyAll()
+void PandaEngine::InputLayouts::DestroyAll()
 {
 	ReleaseCOM(SpritePosTex);
 

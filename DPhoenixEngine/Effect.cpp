@@ -1,6 +1,6 @@
 #include "Effect.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 
 //Effect class sets up ability to compile shaders and then use them

@@ -1,6 +1,6 @@
 #include "Map.h"
 
-DPhoenix::Map::Map(std::string filename, TextureMgr* mTexMgr, ID3D11Device* md3dDevice,
+PandaEngine::Map::Map(std::string filename, TextureMgr* mTexMgr, ID3D11Device* md3dDevice,
 	std::vector<Collectable*>& collectablesVec, std::vector<std::vector<XMFLOAT2*>>& enemySpawnVec,
 	int tileWidthPerPanel, int tileHeightPerPanel, int amtPanelsWide, int amtPanelsHigh)
 {
@@ -123,13 +123,13 @@ DPhoenix::Map::Map(std::string filename, TextureMgr* mTexMgr, ID3D11Device* md3d
 	}
 
 	//need also Sprites for tiles to render
-	mOneWayTileSprite = new DPhoenix::Sprite();
+	mOneWayTileSprite = new PandaEngine::Sprite();
 	mOneWayTileSprite->Load("Textures\\LevelAssets\\OneWayTile.png", mTexMgr, 30.0f, 30.0f, md3dDevice);
 	mOneWayTileSprite->SetCurrentFrame(0);	mOneWayTileSprite->mAnimationColumns = 1;
 	mOneWayTileSprite->mAnimationDirection = 0;	mOneWayTileSprite->SetAnimationRange(0, 0);
 	mOneWayTileSprite->SetScale(1.0f);	mOneWayTileSprite->mFlipValue = 1.0f;
 
-	mSolidTileSprite = new DPhoenix::Sprite();
+	mSolidTileSprite = new PandaEngine::Sprite();
 	mSolidTileSprite->Load("Textures\\LevelAssets\\SolidTile.png", mTexMgr, 30.0f, 30.0f, md3dDevice);
 	mSolidTileSprite->SetCurrentFrame(0);	mSolidTileSprite->mAnimationColumns = 1;
 	mSolidTileSprite->mAnimationDirection = 0;	mSolidTileSprite->SetAnimationRange(0, 0);
@@ -138,7 +138,7 @@ DPhoenix::Map::Map(std::string filename, TextureMgr* mTexMgr, ID3D11Device* md3d
 }
 
 //given a point, what tile ([x][y] array position) is at this point
-XMFLOAT2 DPhoenix::Map::GetMapTileAtPoint(XMFLOAT2 point)
+XMFLOAT2 PandaEngine::Map::GetMapTileAtPoint(XMFLOAT2 point)
 {
 	int x;
 	int y;
@@ -153,19 +153,19 @@ XMFLOAT2 DPhoenix::Map::GetMapTileAtPoint(XMFLOAT2 point)
 }
 
 //as above, but y index
-int DPhoenix::Map::GetMapTileYAtPoint(float y)
+int PandaEngine::Map::GetMapTileYAtPoint(float y)
 {
 	return (int)((y - mPosition.y + mTileSize / 2.0f) / (float)mTileSize);
 }
 
 //as above but x index
-int DPhoenix::Map::GetMapTileXAtPoint(float x)
+int PandaEngine::Map::GetMapTileXAtPoint(float x)
 {
 	return (int)((x - mPosition.x + mTileSize / 2.0f) / (float)mTileSize);
 }
 
 //get the actual position (x,y) of a map tile given the [x][y] array position
-XMFLOAT2 DPhoenix::Map::GetMapTilePosition(int tileIndexX, int tileIndexY)
+XMFLOAT2 PandaEngine::Map::GetMapTilePosition(int tileIndexX, int tileIndexY)
 {
 	//multiply by tilesize and offset by map position
 	return XMFLOAT2(
@@ -174,7 +174,7 @@ XMFLOAT2 DPhoenix::Map::GetMapTilePosition(int tileIndexX, int tileIndexY)
 	);
 }
 //as above but takes in XMFLOAT2
-XMFLOAT2 DPhoenix::Map::GetMapTilePosition(XMFLOAT2 tileCoords)
+XMFLOAT2 PandaEngine::Map::GetMapTilePosition(XMFLOAT2 tileCoords)
 {
 	return XMFLOAT2(
 		(float)(tileCoords.x * mTileSize) + mPosition.x,
@@ -183,7 +183,7 @@ XMFLOAT2 DPhoenix::Map::GetMapTilePosition(XMFLOAT2 tileCoords)
 }
 
 //this gets the tile type given the [x][y] array position
-DPhoenix::TileTypes DPhoenix::Map::GetTile(int x, int y)
+PandaEngine::TileTypes PandaEngine::Map::GetTile(int x, int y)
 {
 	//if at edge of level, block it off
 	if (x < 0 || x >= mWidth
@@ -195,7 +195,7 @@ DPhoenix::TileTypes DPhoenix::Map::GetTile(int x, int y)
 
 //given the [x][y] array position, is the tile type
 //an obstacle / solid?
-bool DPhoenix::Map::IsObstacle(int x, int y)
+bool PandaEngine::Map::IsObstacle(int x, int y)
 {
 	//treat edge of map as solid
 	if (x < 0 || x >= mWidth
@@ -207,7 +207,7 @@ bool DPhoenix::Map::IsObstacle(int x, int y)
 
 //given the [x][y] array position, is the tile type
 //a ground tile?
-bool DPhoenix::Map::IsGround(int x, int y)
+bool PandaEngine::Map::IsGround(int x, int y)
 {
 	if (x < 0 || x >= mWidth
 		|| y < 0 || y >= mHeight)
@@ -218,7 +218,7 @@ bool DPhoenix::Map::IsGround(int x, int y)
 
 //given the [x][y] array position, is the tile type
 //a one way tile?
-bool DPhoenix::Map::IsOneWayPlatform(int x, int y)
+bool PandaEngine::Map::IsOneWayPlatform(int x, int y)
 {
 	if (x < 0 || x >= mWidth
 		|| y < 0 || y >= mHeight)
@@ -229,7 +229,7 @@ bool DPhoenix::Map::IsOneWayPlatform(int x, int y)
 
 //given the [x][y] array position, is the tile type
 //an empty tile?
-bool DPhoenix::Map::IsEmpty(int x, int y)
+bool PandaEngine::Map::IsEmpty(int x, int y)
 {
 	if (x < 0 || x >= mWidth
 		|| y < 0 || y >= mHeight)

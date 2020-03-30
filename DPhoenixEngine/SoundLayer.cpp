@@ -1,6 +1,6 @@
 #include "D3DUtil.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	//null the global sound layer before initialisation
 	SoundLayer* SoundLayer::mGlobalSLayer = NULL;

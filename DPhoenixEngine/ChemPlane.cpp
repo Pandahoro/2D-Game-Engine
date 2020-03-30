@@ -1,13 +1,13 @@
 #include "ChemPlane.h"
 
-DPhoenix::ChemPlane::ChemPlane(TextureMgr* mTexMgr, ID3D11Device* md3dDevice, 
+PandaEngine::ChemPlane::ChemPlane(TextureMgr* mTexMgr, ID3D11Device* md3dDevice, 
 	XMFLOAT2 position, AudioMgr* audioMgr)
 {
 	//audio manager pointer
 	mAudioMgr = audioMgr;
 
 	//spritsheet initialisation
-	mChemPlaneSprite = new DPhoenix::Sprite();
+	mChemPlaneSprite = new PandaEngine::Sprite();
 	mChemPlaneSprite->Load("Textures\\Enemies\\ChemPlane.png", mTexMgr, 100.0f, 50.0f, md3dDevice);
 	mChemPlaneSprite->SetCurrentFrame(0);	mChemPlaneSprite->mAnimationColumns = 4;
 	mChemPlaneSprite->mAnimationDirection = 10;	mChemPlaneSprite->SetAnimationRange(0, 3);
@@ -70,7 +70,7 @@ DPhoenix::ChemPlane::ChemPlane(TextureMgr* mTexMgr, ID3D11Device* md3dDevice,
 
 }
 //takes in player position to determine movement
-void DPhoenix::ChemPlane::EnemyUpdate(float deltaTime, DPhoenix::Map * map, 
+void PandaEngine::ChemPlane::EnemyUpdate(float deltaTime, PandaEngine::Map * map, 
 	XMFLOAT2 playerPos)
 {
 	//only perform update logic is active flag set
@@ -226,7 +226,7 @@ void DPhoenix::ChemPlane::EnemyUpdate(float deltaTime, DPhoenix::Map * map,
 	}
 }
 
-bool DPhoenix::ChemPlane::TakeDamage(int dmg, AABB2D fireBox)
+bool PandaEngine::ChemPlane::TakeDamage(int dmg, AABB2D fireBox)
 {
 	//(could play sounds here using the audio manager pointer)
 
@@ -259,7 +259,7 @@ bool DPhoenix::ChemPlane::TakeDamage(int dmg, AABB2D fireBox)
 }
 
 //reset timers
-void DPhoenix::ChemPlane::ResetTimers()
+void PandaEngine::ChemPlane::ResetTimers()
 {
 	mMoveTimer.Reset();
 }

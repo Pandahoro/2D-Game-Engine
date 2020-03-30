@@ -2,7 +2,7 @@
 
 #include "D3DUtil.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	class LogFile
 	{
@@ -29,6 +29,6 @@ namespace DPhoenix
 	};
 };
 //call the class debug and make it globally accessible
-//in the DPhoenix namespace
-static DPhoenix::LogFile debug;
+//in the PandaEngine namespace
+static PandaEngine::LogFile debug;
 

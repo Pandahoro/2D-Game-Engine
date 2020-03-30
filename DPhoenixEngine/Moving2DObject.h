@@ -2,7 +2,7 @@
 #include "D3DUtil.h"
 #include "Map.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 
 	class Moving2DObject
@@ -47,15 +47,15 @@ namespace DPhoenix
 		~Moving2DObject() { };
 
 		//update physics for object (add map pointer)
-		void UpdatePhysics(float deltaTime, DPhoenix::Map* map);
+		void UpdatePhysics(float deltaTime, PandaEngine::Map* map);
 		bool HasGround(XMFLOAT2 oldPosition, XMFLOAT2 position, XMFLOAT2 speed,
-			float* groundY, DPhoenix::Map* map);
+			float* groundY, PandaEngine::Map* map);
 		bool HasCeiling(XMFLOAT2 oldPosition, XMFLOAT2 position, XMFLOAT2 speed,
-			float* ceilingY, DPhoenix::Map* map);
+			float* ceilingY, PandaEngine::Map* map);
 		bool CollidesWithLeftWall(XMFLOAT2 oldPosition, XMFLOAT2 position,
-			float* wallX, DPhoenix::Map* map);
+			float* wallX, PandaEngine::Map* map);
 		bool CollidesWithRightWall(XMFLOAT2 oldPosition, XMFLOAT2 position,
-			float* wallX, DPhoenix::Map* map);
+			float* wallX, PandaEngine::Map* map);
 
 	};
 

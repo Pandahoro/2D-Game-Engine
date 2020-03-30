@@ -2,9 +2,9 @@
 
 #include "D3DUtil.h"
 
-//our engine will be called DPhoenix
+//our engine will be called PandaEngine
 //Maybe DP for short?  Anyway, sounds cool
-namespace DPhoenix
+namespace PandaEngine
 {
 	class Engine
 	{

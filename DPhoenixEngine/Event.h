@@ -2,7 +2,7 @@
 
 #include "XboxPad.h"
 
-namespace DPhoenix
+namespace PandaEngine
 {
 	class IEvent
 	{								//event interface
