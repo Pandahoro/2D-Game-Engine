@@ -112,7 +112,15 @@ PandaEngine::Map::Map(std::string filename, TextureMgr* mTexMgr, ID3D11Device* m
 						//add the new spawn point to the vector indexed for antivax type
 						enemySpawnVec[ENEMYMAP_ANTIVAX].push_back(new XMFLOAT2(objectPos));
 						break;
+					case 'z':	//aboss
+						//set position to set enemy spawn point based on map position
+						objectPos.x = mPosition.x + col * mTileSize;
+						objectPos.y = mPosition.y + row * mTileSize;
+						//add the new spawn point to the vector indexed for boss type
+						enemySpawnVec[ENEMYMAP_BOSS].push_back(new XMFLOAT2(objectPos));
+						break;
 					}
+					
 					//increment column
 					col++;
 				}

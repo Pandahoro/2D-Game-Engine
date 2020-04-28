@@ -7,6 +7,7 @@
 #include "ChemPlane.h"
 #include "Angel.h"
 #include "AntiVax.h"
+#include "Boss.h"
 
 enum GameStates
 {
@@ -173,7 +174,7 @@ bool EnemiesDemo::Init(bool fullScreen)
 	//debug font
 	//(Arial size 20 sending window, initial brush, writefactory)
 	mDebugFont = new PandaEngine::Font(mhMainWnd, mBlackBrush,
-		mDWriteFactory, "Arial", 20.0f);
+		mDWriteFactory, "Comic Sans MS", 20.0f);
 
 #pragma region GameAssetsInit
 
@@ -211,6 +212,16 @@ bool EnemiesDemo::Init(bool fullScreen)
 				//construct new ChemPlane enemy with spaen point, device pointers
 				//and add to enemies vector to manage updates / rendering
 				mEnemiesVec.push_back(new PandaEngine::AntiVax(&mTexMgr, md3dDevice,
+					*mEnemySpawnVec[i][j], &mAudioMgr));
+			}
+
+			break;
+		case PandaEngine::ENEMYMAP_BOSS:
+			for (int j = 0; j < mEnemySpawnVec[i].size(); j++)
+			{
+				//construct new Boss enemy with spaen point, device pointers
+				//and add to enemies vector to manage updates / rendering
+				mEnemiesVec.push_back(new PandaEngine::Boss(&mTexMgr, md3dDevice,
 					*mEnemySpawnVec[i][j], &mAudioMgr));
 			}
 
@@ -1318,6 +1329,14 @@ void EnemiesDemo::ReInit()
 			for (int j = 0; j < mEnemySpawnVec[i].size(); j++)
 			{
 				mEnemiesVec.push_back(new PandaEngine::AntiVax(&mTexMgr, md3dDevice, 
+					*mEnemySpawnVec[i][j], &mAudioMgr));
+			}
+
+			break;
+		case PandaEngine::ENEMYMAP_BOSS:
+			for (int j = 0; j < mEnemySpawnVec[i].size(); j++)
+			{
+				mEnemiesVec.push_back(new PandaEngine::Boss(&mTexMgr, md3dDevice,
 					*mEnemySpawnVec[i][j], &mAudioMgr));
 			}
 

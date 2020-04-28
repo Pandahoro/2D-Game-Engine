@@ -156,6 +156,7 @@
     <ClInclude Include="Angel.h" />
     <ClInclude Include="AntiVax.h" />
     <ClInclude Include="AudioMgr.h" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="Camera2D.h" />
     <ClInclude Include="ChemPlane.h" />
     <ClInclude Include="Collectable.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="AntiVax.cpp" />
     <ClCompile Include="AudioDemo.cpp" />
     <ClCompile Include="AudioMgr.cpp" />
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Camera2D.cpp" />
     <ClCompile Include="ChemPlane.cpp" />
     <ClCompile Include="Collectable.cpp" />

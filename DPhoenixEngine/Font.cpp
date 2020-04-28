@@ -18,7 +18,7 @@ namespace PandaEngine
 		HRESULT hr = mDWriteFactory->CreateTextFormat(
 			fontString.c_str(),					// Font family name.
 			NULL,								// Font collection (NULL sets it to use the system font collection).
-			DWRITE_FONT_WEIGHT_REGULAR,			//font weight (regular / bold etc.)
+			DWRITE_FONT_WEIGHT_BOLD,			//font weight (regular / bold etc.)
 			DWRITE_FONT_STYLE_NORMAL,			//font style (e.g. italic)
 			DWRITE_FONT_STRETCH_NORMAL,			//font stretching
 			size,								//font size

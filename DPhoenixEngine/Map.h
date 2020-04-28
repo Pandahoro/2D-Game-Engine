@@ -10,6 +10,7 @@ namespace PandaEngine
 	{
 		ENEMYMAP_CHEMPLANE,
 		ENEMYMAP_ANTIVAX,
+		ENEMYMAP_BOSS,
 		ENEMYMAP_MAX
 	};
 

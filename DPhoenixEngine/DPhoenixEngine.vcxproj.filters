@@ -105,6 +105,9 @@
     <ClInclude Include="AntiVax.h">
       <Filter>Header Files\2DGame</Filter>
     </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>Header Files\2DGame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameTimer.cpp">
@@ -210,6 +213,9 @@
       <Filter>Source Files\Demos\2D Demos</Filter>
     </ClCompile>
     <ClCompile Include="AntiVax.cpp">
+      <Filter>Source Files\2DGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
       <Filter>Source Files\2DGame</Filter>
     </ClCompile>
   </ItemGroup>

@@ -7,7 +7,8 @@ namespace PandaEngine
 	enum EnemyTypes
 	{
 		ENEMY_CHEMPLANE,
-		ENEMY_ANTIVAX
+		ENEMY_ANTIVAX,
+		ENEMY_BOSS
 	};
 
 	enum EnemyLifeStates
