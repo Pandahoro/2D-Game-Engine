@@ -271,7 +271,7 @@ bool EnemiesDemo::Init(bool fullScreen)
 	mGameOverSprite->SetScale(1.0f);	mGameOverSprite->mFlipValue = 1.0f;
 
 
-	mAudioMgr.GetSound("IgnoranceTitle")->Play(true);
+	mAudioMgr.GetSound("midnighttale")->Play(true);
 
 	mGameState = GAME_TITLE_STATE;
 
@@ -1021,13 +1021,13 @@ void EnemiesDemo::HandleEvents(PandaEngine::IEvent* e)
 		case DIK_S:
 			mDeanyP->mInputs[(int)PandaEngine::DP_DOWN_INPUT] = true;
 			break;
-		case DIK_UP:
+		case DIK_SPACE:
 			mDeanyP->mInputs[(int)PandaEngine::DP_JUMP_INPUT] = true;
 			break;
 		case DIK_DOWN:
 			mDeanyP->mInputs[(int)PandaEngine::DP_REFLECT_INPUT] = true;
 			break;
-		case DIK_SPACE:
+		case DIK_LSHIFT:
 			mDeanyP->mInputs[(int)PandaEngine::DP_FIRE_INPUT] = true;
 			break;
 		case DIK_J:
@@ -1049,8 +1049,8 @@ void EnemiesDemo::HandleEvents(PandaEngine::IEvent* e)
 				if (mGameState == GAME_TITLE_STATE)
 				{
 					mGameState = GAME_PLAY_STATE;
-					mAudioMgr.GetSound("IgnoranceTitle")->Stop();
-					mAudioMgr.GetSound("IgnoranceTitle")->SetPosition(0);
+					mAudioMgr.GetSound("midnighttale")->Stop();
+					mAudioMgr.GetSound("midnighttale")->SetPosition(0);
 				}
 				else if (mGameState == GAME_WIN_STATE ||
 					mGameState == GAME_OVER_STATE)
@@ -1059,10 +1059,10 @@ void EnemiesDemo::HandleEvents(PandaEngine::IEvent* e)
 				}
 			}
 			break;
-		case DIK_MINUS:
+		case DIK_DELETE:
 			mDeanyP->mHealth -= 1;
 			break;
-		case DIK_EQUALS:
+		case DIK_INSERT:
 			mDeanyP->mHealth += 1;
 			break;
 		case DIK_ESCAPE:
@@ -1114,8 +1114,8 @@ void EnemiesDemo::HandleEvents(PandaEngine::IEvent* e)
 				if (mGameState == GAME_TITLE_STATE)
 				{
 					mGameState = GAME_PLAY_STATE;
-					mAudioMgr.GetSound("IgnoranceTitle")->Stop();
-					mAudioMgr.GetSound("IgnoranceTitle")->SetPosition(0);
+					mAudioMgr.GetSound("midnighttale")->Stop();
+					mAudioMgr.GetSound("midnighttale")->SetPosition(0);
 				}
 				else if (mGameState == GAME_WIN_STATE ||
 					mGameState == GAME_OVER_STATE)
@@ -1131,7 +1131,7 @@ void EnemiesDemo::HandleEvents(PandaEngine::IEvent* e)
 
 void EnemiesDemo::InitAudio()
 {
-	mAudioMgr.CreateSound("IgnoranceTitle", "Audio\\Music\\IgnoranceTitle.wav");
+	mAudioMgr.CreateSound("midnighttale", "Audio\\Music\\midnighttale.wav");
 	mAudioMgr.CreateSound("LaserShootFX", "Audio\\FX\\LaserShootFX.wav");
 	mAudioMgr.CreateSound("FlatBelieveClip", "Audio\\Voice\\FlatBelieveClip.wav");
 
@@ -1381,7 +1381,7 @@ void EnemiesDemo::ReInit()
 
 	//reset all sounds and begin title state
 	mAudioMgr.ResetAllSounds();
-	mAudioMgr.GetSound("IgnoranceTitle")->Play(true);
+	mAudioMgr.GetSound("midnighttale")->Play(true);
 	mGameState = GAME_TITLE_STATE;
 }
 

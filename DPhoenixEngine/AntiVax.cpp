@@ -7,28 +7,28 @@ PandaEngine::AntiVax::AntiVax(TextureMgr * mTexMgr, ID3D11Device * md3dDevice,
 	mAudioMgr = audioMgr;
 	//spritsheet initialisation - standing animation
 	mAntiVaxStandSprite = new PandaEngine::Sprite();
-	mAntiVaxStandSprite->Load("Textures\\Enemies\\AntiVaxStand.png", mTexMgr, 90.0f, 100.0f, md3dDevice);
+	mAntiVaxStandSprite->Load("Textures\\Enemies\\ShroomIdle.png", mTexMgr, 90.0f, 100.0f, md3dDevice);
 	mAntiVaxStandSprite->SetCurrentFrame(0);	mAntiVaxStandSprite->mAnimationColumns = 4;
 	mAntiVaxStandSprite->mAnimationDirection = 10;	mAntiVaxStandSprite->SetAnimationRange(0, 3);
-	mAntiVaxStandSprite->SetScale(1.0f);	mAntiVaxStandSprite->mFlipValue = 1.0f;
+	mAntiVaxStandSprite->SetScale(3.0f);	mAntiVaxStandSprite->mFlipValue = 1.0f;
 	//spritsheet initialisation - jump animation
 	mAntiVaxJumpSprite = new PandaEngine::Sprite();
-	mAntiVaxJumpSprite->Load("Textures\\Enemies\\AntiVaxJump.png", mTexMgr, 90.0f, 100.0f, md3dDevice);
+	mAntiVaxJumpSprite->Load("Textures\\Enemies\\ShroomIdle.png", mTexMgr, 90.0f, 100.0f, md3dDevice);
 	mAntiVaxJumpSprite->SetCurrentFrame(0);	mAntiVaxJumpSprite->mAnimationColumns = 4;
 	mAntiVaxJumpSprite->mAnimationDirection = 10;	mAntiVaxJumpSprite->SetAnimationRange(0, 3);
-	mAntiVaxJumpSprite->SetScale(1.0f);	mAntiVaxJumpSprite->mFlipValue = 1.0f;
+	mAntiVaxJumpSprite->SetScale(3.0f);	mAntiVaxJumpSprite->mFlipValue = 1.0f;
 	//spritsheet initialisation - standing and firing animation
 	mAntiVaxStandFireSprite = new PandaEngine::Sprite();
-	mAntiVaxStandFireSprite->Load("Textures\\Enemies\\AntiVaxFire.png", mTexMgr, 90.0f, 100.0f, md3dDevice);
+	mAntiVaxStandFireSprite->Load("Textures\\Enemies\\ShroomAttack.png", mTexMgr, 90.0f, 100.0f, md3dDevice);
 	mAntiVaxStandFireSprite->SetCurrentFrame(0);	mAntiVaxStandFireSprite->mAnimationColumns = 4;
 	mAntiVaxStandFireSprite->mAnimationDirection = 16;	mAntiVaxStandFireSprite->SetAnimationRange(0, 3);
-	mAntiVaxStandFireSprite->SetScale(1.0f);	mAntiVaxStandFireSprite->mFlipValue = 1.0f;
+	mAntiVaxStandFireSprite->SetScale(3.0f);	mAntiVaxStandFireSprite->mFlipValue = 1.0f;
 	//spritsheet initialisation - jumping and firing animation
 	mAntiVaxJumpFireSprite = new PandaEngine::Sprite();
-	mAntiVaxJumpFireSprite->Load("Textures\\Enemies\\AntiVaxJumpFire.png", mTexMgr, 90.0f, 100.0f, md3dDevice);
+	mAntiVaxJumpFireSprite->Load("Textures\\Enemies\\ShroomAttack.png", mTexMgr, 90.0f, 100.0f, md3dDevice);
 	mAntiVaxJumpFireSprite->SetCurrentFrame(0);	mAntiVaxJumpFireSprite->mAnimationColumns = 4;
 	mAntiVaxJumpFireSprite->mAnimationDirection = 16;	mAntiVaxJumpFireSprite->SetAnimationRange(0, 3);
-	mAntiVaxJumpFireSprite->SetScale(1.0f);	mAntiVaxJumpFireSprite->mFlipValue = 1.0f;
+	mAntiVaxJumpFireSprite->SetScale(3.0f);	mAntiVaxJumpFireSprite->mFlipValue = 1.0f;
 	//set current sprite nitially to standing sprite
 	mCurrentSprite = mAntiVaxStandSprite;
 

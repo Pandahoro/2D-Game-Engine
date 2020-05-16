@@ -37,10 +37,10 @@ PandaEngine::Fire::Fire(TextureMgr* mTexMgr, ID3D11Device* md3dDevice, XMFLOAT2 
 		{
 			//spritesheet init
 			mFireSprite = new PandaEngine::Sprite();
-			mFireSprite->Load("Textures\\Enemies\\Chemtrails.png", mTexMgr, 50.0f, 50.0f, md3dDevice);
-			mFireSprite->SetCurrentFrame(0);	mFireSprite->mAnimationColumns = 10;
-			mFireSprite->mAnimationDirection = 6;	mFireSprite->SetAnimationRange(0, 9);
-			mFireSprite->SetScale(1.0f);	mFireSprite->mFlipValue = 1.0f;
+			mFireSprite->Load("Textures\\Enemies\\BatStuff.png", mTexMgr, 20.0f, 20.0f, md3dDevice);
+			mFireSprite->SetCurrentFrame(0);	mFireSprite->mAnimationColumns = 8;
+			mFireSprite->mAnimationDirection = 12;	mFireSprite->SetAnimationRange(0, 7);
+			mFireSprite->SetScale(3.0f);	mFireSprite->mFlipValue = 1.0f;
 
 			mIsFriendlyFire = false;	//not firendly fire
 
@@ -54,10 +54,10 @@ PandaEngine::Fire::Fire(TextureMgr* mTexMgr, ID3D11Device* md3dDevice, XMFLOAT2 
 		{
 			//spritesheet init
 			mFireSprite = new PandaEngine::Sprite();
-			mFireSprite->Load("Textures\\Enemies\\Syringe.png", mTexMgr, 20.0f, 20.0f, md3dDevice);
+			mFireSprite->Load("Textures\\Enemies\\brick.png", mTexMgr, 20.0f, 20.0f, md3dDevice);
 			mFireSprite->SetCurrentFrame(0);	mFireSprite->mAnimationColumns = 8;
 			mFireSprite->mAnimationDirection = 12;	mFireSprite->SetAnimationRange(0, 7);
-			mFireSprite->SetScale(1.0f);	mFireSprite->mFlipValue = 1.0f;
+			mFireSprite->SetScale(2.0f);	mFireSprite->mFlipValue = 1.0f;
 
 			mIsFriendlyFire = false;	//not firendly fire
 

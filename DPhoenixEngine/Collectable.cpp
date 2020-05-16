@@ -13,7 +13,7 @@ PandaEngine::Collectable::Collectable(TextureMgr * mTexMgr, ID3D11Device * md3dD
 		case COLLECTABLE_RESEARCH:
 		{
 			mCollectibleSprite = new PandaEngine::Sprite();
-			mCollectibleSprite->Load("Textures\\ObjectAssets\\Research.png", mTexMgr, 30.0f, 30.0f, md3dDevice);
+			mCollectibleSprite->Load("Textures\\ObjectAssets\\mana.png", mTexMgr, 30.0f, 30.0f, md3dDevice);
 			mCollectibleSprite->SetCurrentFrame(0);	mCollectibleSprite->mAnimationColumns = 4;
 			mCollectibleSprite->mAnimationDirection = 6;	mCollectibleSprite->SetAnimationRange(0, 3);
 			mCollectibleSprite->SetScale(1.0f);	mCollectibleSprite->mFlipValue = 1.0f;
@@ -22,7 +22,7 @@ PandaEngine::Collectable::Collectable(TextureMgr * mTexMgr, ID3D11Device * md3dD
 		case COLLECTABLE_COFFEE:
 		{
 			mCollectibleSprite = new PandaEngine::Sprite();
-			mCollectibleSprite->Load("Textures\\ObjectAssets\\Coffee.png", mTexMgr, 30.0f, 60.0f, md3dDevice);
+			mCollectibleSprite->Load("Textures\\ObjectAssets\\health.png", mTexMgr, 30.0f, 60.0f, md3dDevice);
 			mCollectibleSprite->SetCurrentFrame(0);	mCollectibleSprite->mAnimationColumns = 4;
 			mCollectibleSprite->mAnimationDirection = 6;	mCollectibleSprite->SetAnimationRange(0, 3);
 			mCollectibleSprite->SetScale(1.0f);	mCollectibleSprite->mFlipValue = 1.0f;

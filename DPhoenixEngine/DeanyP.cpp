@@ -8,52 +8,55 @@ PandaEngine::DeanyP::DeanyP(TextureMgr* mTexMgr, ID3D11Device* md3dDevice, Audio
 #pragma region SpritesheetInit
 	//dying
 	mDieSprite = new PandaEngine::Sprite();
-	mDieSprite->Load("Textures\\DeanyP\\Die.png", mTexMgr, 60.0f, 100.0f, md3dDevice);
-	mDieSprite->SetCurrentFrame(0);	mDieSprite->mAnimationColumns = 16;
-	mDieSprite->mAnimationDirection = 12;	mDieSprite->SetAnimationRange(0, 15);
-	mDieSprite->SetScale(1.0f);	mDieSprite->mFlipValue = 1.0f;
+	mDieSprite->Load("Textures\\DeanyP\\MainDeath.png", mTexMgr, 96.0f, 64.0f, md3dDevice);
+	mDieSprite->SetCurrentFrame(0);	mDieSprite->mAnimationColumns = 15;
+	mDieSprite->mAnimationDirection = 12;	mDieSprite->SetAnimationRange(0, 14);
+	mDieSprite->SetScale(3.0f);	mDieSprite->mFlipValue = 1.0f;
 	//idle
 	mIdleSprite = new PandaEngine::Sprite();
-	mIdleSprite->Load("Textures\\DeanyP\\Idle.png", mTexMgr, 50.0f, 100.0f, md3dDevice);
-	mIdleSprite->SetCurrentFrame(0);	mIdleSprite->mAnimationColumns = 16;
-	mIdleSprite->mAnimationDirection = 10;	mIdleSprite->SetAnimationRange(0, 15);
-	mIdleSprite->SetScale(1.0f);	mIdleSprite->mFlipValue = 1.0f;
+	mIdleSprite->Load("Textures\\DeanyP\\MainIdle.png", mTexMgr, 64.0f, 64.0f, md3dDevice);
+	mIdleSprite->SetCurrentFrame(0);	mIdleSprite->mAnimationColumns = 15;
+	mIdleSprite->mAnimationDirection = 10;	mIdleSprite->SetAnimationRange(0, 14);
+	mIdleSprite->SetScale(3.0f);	mIdleSprite->mFlipValue = 1.0f;
 	//reflecting (charging)
 	mReflectSprite = new PandaEngine::Sprite();
-	mReflectSprite->Load("Textures\\DeanyP\\Reflect.png", mTexMgr, 50.0f, 100.0f, md3dDevice);
-	mReflectSprite->SetCurrentFrame(0);	mReflectSprite->mAnimationColumns = 8;
-	mReflectSprite->mAnimationDirection = 7;	mReflectSprite->SetAnimationRange(0, 7);
-	mReflectSprite->SetScale(1.0f);	mReflectSprite->mFlipValue = 1.0f;
+	mReflectSprite->Load("Textures\\DeanyP\\MainIdle.png", mTexMgr, 64.0f, 64.0f, md3dDevice);
+	mReflectSprite->SetCurrentFrame(0);	mReflectSprite->mAnimationColumns = 15;
+	mReflectSprite->mAnimationDirection = 10;	mReflectSprite->SetAnimationRange(0, 14);
+	mReflectSprite->SetScale(3.0f);	mReflectSprite->mFlipValue = 1.0f;
 	//running
 	mRunSprite = new PandaEngine::Sprite();
-	mRunSprite->Load("Textures\\DeanyP\\Run.png", mTexMgr, 75.0f, 100.0f, md3dDevice);
-	mRunSprite->SetCurrentFrame(0);	mRunSprite->mAnimationColumns = 12;
-	mRunSprite->mAnimationDirection = 16;	mRunSprite->SetAnimationRange(0, 11);
-	mRunSprite->SetScale(1.0f);	mRunSprite->mFlipValue = 1.0f;
+	mRunSprite->Load("Textures\\DeanyP\\MainRun.png", mTexMgr, 96.0f, 64.0f, md3dDevice);
+	mRunSprite->SetCurrentFrame(0);	mRunSprite->mAnimationColumns = 8;
+	mRunSprite->mAnimationDirection = 16;	mRunSprite->SetAnimationRange(0, 7);
+	mRunSprite->SetScale(3.0f);	mRunSprite->mFlipValue = 1.0f;
 	//running and gunning
 	mRunFFwdSprite = new PandaEngine::Sprite();
-	mRunFFwdSprite->Load("Textures\\DeanyP\\RunFFwd.png", mTexMgr, 75.0f, 100.0f, md3dDevice);
-	mRunFFwdSprite->SetCurrentFrame(0);	mRunFFwdSprite->mAnimationColumns = 12;
-	mRunFFwdSprite->mAnimationDirection = 16;	mRunFFwdSprite->SetAnimationRange(0, 11);
-	mRunFFwdSprite->SetScale(1.0f);	mRunFFwdSprite->mFlipValue = 1.0f;
+	mRunFFwdSprite->Load("Textures\\DeanyP\\MainRun.png", mTexMgr, 96.0f, 64.0f, md3dDevice);
+	mRunFFwdSprite->SetCurrentFrame(0);	mRunFFwdSprite->mAnimationColumns = 8;
+	mRunFFwdSprite->mAnimationDirection = 16;	mRunFFwdSprite->SetAnimationRange(0, 7);
+	mRunFFwdSprite->SetScale(3.0f);	mRunFFwdSprite->mFlipValue = 1.0f;
 	//standing and firing
 	mStandFFwdSprite = new PandaEngine::Sprite();
-	mStandFFwdSprite->Load("Textures\\DeanyP\\StandFFwd.png", mTexMgr, 55.0f, 100.0f, md3dDevice);
-	mStandFFwdSprite->SetCurrentFrame(0);	mStandFFwdSprite->mAnimationColumns = 4;
-	mStandFFwdSprite->mAnimationDirection = 16;	mStandFFwdSprite->SetAnimationRange(0, 3);
-	mStandFFwdSprite->SetScale(1.0f);	mStandFFwdSprite->mFlipValue = 1.0f;
+	mStandFFwdSprite->Load("Textures\\DeanyP\\MainAttack.png", mTexMgr, 144.0f, 64.0f, md3dDevice);
+	mStandFFwdSprite->SetCurrentFrame(0);	
+	mStandFFwdSprite->mAnimationColumns = 22;
+	mStandFFwdSprite->mAnimationDirection = 16;	
+	mStandFFwdSprite->SetAnimationRange(0, 6);
+	mStandFFwdSprite->SetScale(3.0f);	
+	mStandFFwdSprite->mFlipValue = 1.0f;
 	//jumping
 	mJumpSprite = new PandaEngine::Sprite();
-	mJumpSprite->Load("Textures\\DeanyP\\Jump.png", mTexMgr, 55.0f, 100.0f, md3dDevice);
-	mJumpSprite->SetCurrentFrame(0);	mJumpSprite->mAnimationColumns = 4;
-	mJumpSprite->mAnimationDirection = 16;	mJumpSprite->SetAnimationRange(0, 3);
-	mJumpSprite->SetScale(1.0f);	mJumpSprite->mFlipValue = 1.0f;
+	mJumpSprite->Load("Textures\\DeanyP\\MainIdle.png", mTexMgr, 64.0f, 64.0f, md3dDevice);
+	mJumpSprite->SetCurrentFrame(0);	mJumpSprite->mAnimationColumns = 15;
+	mJumpSprite->mAnimationDirection = 10;	mJumpSprite->SetAnimationRange(0, 14);
+	mJumpSprite->SetScale(3.0f);	mJumpSprite->mFlipValue = 1.0f;
 	//jumping and firing
 	mJumpFFwdSprite = new PandaEngine::Sprite();
-	mJumpFFwdSprite->Load("Textures\\DeanyP\\JumpFFwd.png", mTexMgr, 55.0f, 100.0f, md3dDevice);
-	mJumpFFwdSprite->SetCurrentFrame(0);	mJumpFFwdSprite->mAnimationColumns = 4;
-	mJumpFFwdSprite->mAnimationDirection = 16;	mJumpFFwdSprite->SetAnimationRange(0, 3);
-	mJumpFFwdSprite->SetScale(1.0f);	mJumpFFwdSprite->mFlipValue = 1.0f;
+	mJumpFFwdSprite->Load("Textures\\DeanyP\\MainAttack.png", mTexMgr, 144.0f, 64.0f, md3dDevice);
+	mJumpFFwdSprite->SetCurrentFrame(0);	mJumpFFwdSprite->mAnimationColumns = 22;
+	mJumpFFwdSprite->mAnimationDirection = 16;	mJumpFFwdSprite->SetAnimationRange(0, 6);
+	mJumpFFwdSprite->SetScale(3.0f);	mJumpFFwdSprite->mFlipValue = 1.0f;
 
 	//set the current sprite as the idle animation
 	mCurrentSprite = mIdleSprite;
@@ -63,11 +66,11 @@ PandaEngine::DeanyP::DeanyP(TextureMgr* mTexMgr, ID3D11Device* md3dDevice, Audio
 
 	//these values to be tweaked for the right feel 
 	//for your mechanics
-	mJumpSpeed = 700.0f;
-	mRunSpeed = 450.0f;
+	mJumpSpeed = 900.0f;
+	mRunSpeed = 490.0f;
 
-	mGravity = -1500.0f;
-	mMaxFallSpeed = -1500.0f;
+	mGravity = -2500.0f;
+	mMaxFallSpeed = -2400.0f;
 	mMinJumpSpeed = 400.0f;
 
 	//initialise input arrays to be false 
@@ -84,14 +87,14 @@ PandaEngine::DeanyP::DeanyP(TextureMgr* mTexMgr, ID3D11Device* md3dDevice, Audio
 	//flags and stats init
 	isFacingLeft = false;
 	mHealth = 100; mMaxHealth = 100;
-	mKnowledge = 100; mMaxKnowledge = 100;
+	mKnowledge = 200; mMaxKnowledge = 200;
 	mLastLifeFlag = false;
 	mColorLerpValue = 0.0f;
 
 	//parent class initialisations
 	mPosition.x = 0.0f; mPosition.y = 0.0f;
 	mAABB.center.x = 0.0f; mAABB.center.y = 0.0f;
-	mAABB.halfSize.x = 15.0f; mAABB.halfSize.y = 50.0f;
+	mAABB.halfSize.x = 15.0f; mAABB.halfSize.y = 32.0f;
 	mAABBOffset.x = 0.0f; mAABBOffset.y = 0.0f;
 
 	//collision flags

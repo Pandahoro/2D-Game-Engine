@@ -8,10 +8,10 @@ PandaEngine::ChemPlane::ChemPlane(TextureMgr* mTexMgr, ID3D11Device* md3dDevice,
 
 	//spritsheet initialisation
 	mChemPlaneSprite = new PandaEngine::Sprite();
-	mChemPlaneSprite->Load("Textures\\Enemies\\ChemPlane.png", mTexMgr, 100.0f, 50.0f, md3dDevice);
-	mChemPlaneSprite->SetCurrentFrame(0);	mChemPlaneSprite->mAnimationColumns = 4;
-	mChemPlaneSprite->mAnimationDirection = 10;	mChemPlaneSprite->SetAnimationRange(0, 3);
-	mChemPlaneSprite->SetScale(1.0f);	mChemPlaneSprite->mFlipValue = 1.0f;
+	mChemPlaneSprite->Load("Textures\\Enemies\\EyeFlight.png", mTexMgr, 150.0f, 150.0f, md3dDevice);
+	mChemPlaneSprite->SetCurrentFrame(0);	mChemPlaneSprite->mAnimationColumns = 8;
+	mChemPlaneSprite->mAnimationDirection = 10;	mChemPlaneSprite->SetAnimationRange(0, 7);
+	mChemPlaneSprite->SetScale(2.0f);	mChemPlaneSprite->mFlipValue = 1.0f;
 	//set pointer to current sprite
 	mCurrentSprite = mChemPlaneSprite;
 
